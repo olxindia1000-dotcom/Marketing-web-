@@ -1,6 +1,6 @@
-// --- Interactive Deal Alert ---
+// --- Interactive Deal Alert System ---
 function dealAlert(serviceName) {
-  alert(`For exclusive deals on "${serviceName}", please call our growth team directly at: +91 9316528918`);
+  alert(`For exclusive deals on "${serviceName}", please call Vedant & Divy's growth team directly at: +91 9316528918`);
 }
 
 function scrollToSection(id) {
@@ -20,7 +20,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 // High-Level 3D Geometry (Torus Knot Core)
 const geometry = new THREE.TorusKnotGeometry(1.8, 0.5, 128, 32);
 
-// Dynamic Dual-Color Material (Light Blue Wireframe)
+// Dynamic Material (Light Blue Wireframe)
 const material = new THREE.MeshStandardMaterial({
   color: 0x0284c7,
   wireframe: true,
@@ -31,7 +31,7 @@ const shape3D = new THREE.Mesh(geometry, material);
 shape3D.position.set(3.8, 0, -2);
 scene.add(shape3D);
 
-// Electric Yellow Floating Halo Particles
+// Electric Yellow Floating Particles
 const particlesCount = 450;
 const positions = new Float32Array(particlesCount * 3);
 
@@ -52,7 +52,7 @@ const particleMat = new THREE.PointsMaterial({
 const particleSystem = new THREE.Points(particleGeo, particleMat);
 scene.add(particleSystem);
 
-// High-Level Lighting setup
+// High-Level Lighting Setup
 const mainLight = new THREE.PointLight(0x0284c7, 2, 50);
 mainLight.position.set(5, 5, 5);
 scene.add(mainLight);
