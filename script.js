@@ -1,4 +1,5 @@
-// --- Three.js 3D Interactive Scene Setup ---
+// --- Advanced Three.js Interactive 3D World ---
+
 const canvas = document.getElementById('bg-canvas');
 
 // Scene, Camera, Renderer
@@ -7,58 +8,120 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
 
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-// Create 3D Interactive Object (Floating Geometric Shape)
-const geometry = new THREE.IcosahedronGeometry(2, 1);
-const material = new THREE.MeshStandardMaterial({
+// 1. Core 3D Interactive Geometric Shape (Icosahedron Mesh + Wireframe)
+const coreGeometry = new THREE.IcosahedronGeometry(2.2, 2);
+
+// Metallic Inner Mesh
+const innerMaterial = new THREE.MeshStandardMaterial({
+  color: 0x0a192f,
+  roughness: 0.2,
+  metalness: 0.8,
+  flatShading: true
+});
+const coreMesh = new THREE.Mesh(coreGeometry, innerMaterial);
+scene.add(coreMesh);
+
+// Cyan Wireframe Overlay
+const wireframeMaterial = new THREE.MeshBasicMaterial({
   color: 0x00f2fe,
   wireframe: true,
-  roughness: 0.1
+  transparent: true,
+  opacity: 0.35
+});
+const wireframeMesh = new THREE.Mesh(coreGeometry, wireframeMaterial);
+wireframeMesh.scale.set(1.02, 1.02, 1.02);
+scene.add(wireframeMesh);
+
+// 2. Floating Data Particle Nodes (Data Streams Animation)
+const particlesCount = 700;
+const particlePositions = new Float32Array(particlesCount * 3);
+
+for (let i = 0; i < particlesCount * 3; i++) {
+  particlePositions[i] = (Math.random() - 0.5) * 20;
+}
+
+const particleGeometry = new THREE.BufferGeometry();
+particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+
+const particleMaterial = new THREE.PointsMaterial({
+  size: 0.03,
+  color: 0x4facfe,
+  transparent: true,
+  opacity: 0.7
 });
 
-const shape3D = new THREE.Mesh(geometry, material);
-scene.add(shape3D);
+const particleSystem = new THREE.Points(particleGeometry, particleMaterial);
+scene.add(particleSystem);
 
-// Lighting
-const pointLight = new THREE.PointLight(0xffffff, 1);
-pointLight.position.set(5, 5, 5);
-scene.add(pointLight);
+// 3. Dynamic Lighting Setup
+const mainLight = new THREE.PointLight(0x00f2fe, 2, 50);
+mainLight.position.set(5, 5, 5);
+scene.add(mainLight);
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+const purpleLight = new THREE.PointLight(0x7c3aed, 2, 50);
+purpleLight.position.set(-5, -5, 2);
+scene.add(purpleLight);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
 scene.add(ambientLight);
 
-camera.position.z = 5;
+camera.position.z = 6;
 
-// Mouse Movement Effect (Interactive 3D Control)
+// Mouse Interaction & Smooth Interpolation
 let mouseX = 0;
 let mouseY = 0;
+let targetX = 0;
+let targetY = 0;
 
-document.addEventListener('mousemove', (e) => {
-  mouseX = (e.clientX / window.innerWidth) - 0.5;
-  mouseY = (e.clientY / window.innerHeight) - 0.5;
+document.addEventListener('mousemove', (event) => {
+  mouseX = (event.clientX / window.innerWidth - 0.5);
+  mouseY = (event.clientY / window.innerHeight - 0.5);
 });
 
-// Animation Loop
+// Scroll Dynamic Effect
+let scrollY = 0;
+window.addEventListener('scroll', () => {
+  scrollY = window.scrollY;
+});
+
+// Render & Animation Loop
+const clock = new THREE.Clock();
+
 function animate() {
   requestAnimationFrame(animate);
 
-  // Auto rotation
-  shape3D.rotation.x += 0.003;
-  shape3D.rotation.y += 0.005;
+  const elapsedTime = clock.getElapsedTime();
 
-  // React to mouse movement
-  shape3D.rotation.y += mouseX * 0.05;
-  shape3D.rotation.x += mouseY * 0.05;
+  // Smooth Mouse Tracking (Lerp)
+  targetX += (mouseX - targetX) * 0.05;
+  targetY += (mouseY - targetY) * 0.05;
+
+  // 3D Object Rotations
+  coreMesh.rotation.x = elapsedTime * 0.2 + targetY;
+  coreMesh.rotation.y = elapsedTime * 0.3 + targetX;
+
+  wireframeMesh.rotation.x = elapsedTime * 0.2 + targetY;
+  wireframeMesh.rotation.y = elapsedTime * 0.3 + targetX;
+
+  // Particle System Pulse and Rotation
+  particleSystem.rotation.y = elapsedTime * 0.05;
+  particleSystem.rotation.x = -targetY * 0.2;
+
+  // Camera Reacts to Page Scroll Position
+  camera.position.y = -scrollY * 0.002;
+  camera.position.x = targetX * 0.5;
 
   renderer.render(scene, camera);
 }
 
 animate();
 
-// Handle Window Resize
+// Handle Window Resizing
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
