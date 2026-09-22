@@ -3,192 +3,197 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Growth Marketing & Agency Engine</title>
+  <title>AuraGrowth | 3D Marketing & Growth Engine</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Three.js for 3D Canvas -->
+  <!-- Three.js Library for 3D Background -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
 
-  <!-- 3D Background Canvas -->
+  <!-- 3D Canvas Background -->
   <canvas id="bg-canvas"></canvas>
 
-  <!-- Navigation Bar -->
+  <!-- Sticky Navbar -->
   <nav class="navbar">
-    <div class="logo">Growth<span>Digital</span></div>
+    <div class="logo">Aura<span>Growth 3D</span></div>
     <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#dashboard">Live Dashboard</a></li>
-      <li><a href="#strategy">Strategy</a></li>
-      <li><a href="#leads">Get Quote</a></li>
+      <li><a href="#seo">SEO Engine</a></li>
+      <li><a href="#leads">Lead Gen</a></li>
+      <li><a href="#sales">Sales Automation</a></li>
+      <li><a href="#analytics">Data Analytics</a></li>
+      <li><a href="#growth">Growth Suite</a></li>
     </ul>
-    <div class="contact-header">+91 7776014848</div>
+    <a href="tel:+919316528918" class="btn-call">📞 Call +91 9316528918</a>
   </nav>
 
-  <!-- Hero Section with 3D Interaction -->
+  <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <div class="badge">• Instant Leads, Maximum ROI — Run Winning Google Ads</div>
-      <h1>Google Ads PPC & <br><span class="gradient-text">SEO Growth Services</span></h1>
-      <p>The team behind 500+ local campaigns. Scale your business with high-intent lead generation, Google Maps ranking, and AI performance marketing.</p>
+      <div class="badge">🚀 Premium Light UI & 3D Interactive Engine</div>
+      <h1>Scale Business Revenue With <br><span class="gradient-text">Next-Gen Growth Suite</span></h1>
+      <p>Transform SEO rankings, high-converting leads, automated sales pipelines, and live data analytics under one platform.</p>
       <div class="hero-btns">
-        <button class="btn-primary" onclick="scrollToSection('leads')">Book a Strategy Call ↗</button>
-        <button class="btn-secondary" onclick="scrollToSection('dashboard')">View Live Analytics</button>
+        <a href="tel:+919316528918" class="btn-primary">Call +91 9316528918 for Deals ↗</a>
+        <button class="btn-secondary" onclick="scrollToSection('seo')">Explore Features</button>
       </div>
-      <div class="hero-trust">
-        <span>✓ Since 2006</span>
-        <span>✓ 12K+ Websites Delivered</span>
-        <span>✓ 500+ Local SEO Clients</span>
-        <span>✓ 4.7★ on Google</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- CLICKABLE TABS & SERVICE FILTER SECTION -->
-  <section id="services" class="section">
-    <h2 class="section-title">Select Your Growth Category</h2>
-    <p class="section-subtitle">Click on any category to view specialized strategy & services</p>
-
-    <!-- Interactive Filter Buttons -->
-    <div class="tab-buttons">
-      <button class="tab-btn active" onclick="openTab(event, 'sales-tab')">📊 Sales Growth</button>
-      <button class="tab-btn" onclick="openTab(event, 'leads-tab')">🎯 Lead Generation</button>
-      <button class="tab-btn" onclick="openTab(event, 'seo-tab')">🔍 Local SEO & Maps</button>
-      <button class="tab-btn" onclick="openTab(event, 'growth-tab')">🚀 Scale Strategy</button>
-    </div>
-
-    <!-- Tab Contents -->
-    <div id="sales-tab" class="tab-content active">
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">💰</div>
-          <h3>Google PPC Conversion Engine</h3>
-          <p>Maximize your sales return with optimized ad spend, high-converting landing pages, and instant traffic.</p>
-          <button class="card-btn" onclick="triggerAlert('Sales Optimization Activated!')">Explore Sales Plan</button>
-        </div>
-        <div class="card">
-          <div class="card-icon">📈</div>
-          <h3>Remarketing & Retargeting</h3>
-          <p>Bring back 98% of lost site visitors with dynamic banner and search remarketing campaigns.</p>
-          <button class="card-btn" onclick="triggerAlert('Retargeting Engine Enabled!')">Explore Retargeting</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="leads-tab" class="tab-content">
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">⚡</div>
-          <h3>High-Intent Lead Funnels</h3>
-          <p>Capture ready-to-buy customer phone calls and inquiry forms straight to your WhatsApp and CRM.</p>
-          <button class="card-btn" onclick="triggerAlert('Lead Funnel Ready!')">Setup Lead Engine</button>
-        </div>
-        <div class="card">
-          <div class="card-icon">📞</div>
-          <h3>Click-To-Call Campaigns</h3>
-          <p>Direct incoming phone calls from mobile users looking for your local products and services.</p>
-          <button class="card-btn" onclick="triggerAlert('Call Ads Started!')">Start Call Ads</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="seo-tab" class="tab-content">
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">📍</div>
-          <h3>Google Maps 3-Pack Ranking</h3>
-          <p>Dominate local search in your city. Get top ranking on Google Maps for local service searches.</p>
-          <button class="card-btn" onclick="triggerAlert('Local SEO Audit Initiated!')">Audit My Maps</button>
-        </div>
-        <div class="card">
-          <div class="card-icon">🔗</div>
-          <h3>Organic Keyword Domination</h3>
-          <p>Long-term first-page rankings with technical SEO, schema markup, and authoritative backlinks.</p>
-          <button class="card-btn" onclick="triggerAlert('SEO Strategy Loaded!')">Rank Keywords</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="growth-tab" class="tab-content">
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-icon">🚀</div>
-          <h3>Omnichannel Growth Scaling</h3>
-          <p>Scale budget predictably across Google, Meta, and LinkedIn with unified customer data attribution.</p>
-          <button class="card-btn" onclick="triggerAlert('Scale Strategy Active!')">Scale My Business</button>
-        </div>
-        <div class="card">
-          <div class="card-icon">🧠</div>
-          <h3>AI Competitor Hijacking</h3>
-          <p>Identify competitor target keywords and capture their market share with smarter AI bidding tactics.</p>
-          <button class="card-btn" onclick="triggerAlert('Competitor Analysis On!')">Hijack Traffic</button>
-        </div>
+      <div class="trust-tags">
+        <span>✓ High-Intent Leads</span>
+        <span>✓ Google Maps 3-Pack</span>
+        <span>✓ Real-time Analytics</span>
+        <span>✓ 24/7 Sales Pipeline</span>
       </div>
     </div>
   </section>
 
-  <!-- LIVE ANALYTICS DASHBOARD SHOWCASE -->
-  <section id="dashboard" class="section glass-section">
-    <div class="dashboard-header">
-      <h2>Real-Time Campaign Growth Monitor</h2>
-      <p>Live metrics from active client campaigns over the last 90 days</p>
-    </div>
-
-    <div class="stats-row">
-      <div class="stat-box">
-        <h4>Google Maps Views</h4>
-        <p class="number">+127%</p>
-        <span>Average growth across active local campaigns</span>
+  <!-- SEO ENGINE SECTION -->
+  <section id="seo" class="section">
+    <h2 class="section-title">🔍 SEO & Google Maps Engine</h2>
+    <p class="section-subtitle">Rank on the first page of Google and dominate local market searches.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">📍</div>
+        <h3>Google Maps 3-Pack Ranking</h3>
+        <p>Get listed in top 3 map results for instant local phone calls and direct foot traffic.</p>
+        <button class="card-btn" onclick="dealAlert('Google Maps SEO')">Claim Maps Deal</button>
       </div>
-      <div class="stat-box">
-        <h4>Calls & Direction Requests</h4>
-        <p class="number">14,820</p>
-        <span>Combined actions from Maps and Search</span>
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <h3>Organic Keyword Ranker</h3>
+        <p>Technical SEO audits, high-authority backlink building, and high-ranking content strategy.</p>
+        <button class="card-btn" onclick="dealAlert('Organic Keyword SEO')">Explore Ranker</button>
       </div>
-      <div class="stat-box">
-        <h4>Avg. Local Pack Entry</h4>
-        <p class="number">18 Days</p>
-        <span>For new campaigns in competitive niches</span>
-      </div>
-    </div>
-
-    <!-- Live Interactive Dynamic Growth Chart Visualizer -->
-    <div class="chart-container">
-      <div class="chart-title">Growth Telemetry (Traffic vs Revenue)</div>
-      <div class="animated-line-chart">
-        <div class="chart-point" style="--val: 20%;" data-tooltip="Month 1: $12K"></div>
-        <div class="chart-point" style="--val: 35%;" data-tooltip="Month 2: $24K"></div>
-        <div class="chart-point" style="--val: 50%;" data-tooltip="Month 3: $48K"></div>
-        <div class="chart-point" style="--val: 70%;" data-tooltip="Month 4: $82K"></div>
-        <div class="chart-point" style="--val: 95%;" data-tooltip="Month 5: $140K"></div>
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Competitor Traffic Hijack</h3>
+        <p>Identify your competitors' top conversion keywords and capture their market share.</p>
+        <button class="card-btn" onclick="dealAlert('Competitor Hijack')">Hijack Keywords</button>
       </div>
     </div>
   </section>
 
-  <!-- LEAD GENERATION FORM -->
-  <section id="leads" class="section">
-    <div class="form-container">
-      <h2>Get a Free Marketing Audit & Quote</h2>
-      <p>Fill out the form below to receive an instant Google Ads & SEO evaluation report.</p>
-      <form class="growth-form" onsubmit="event.preventDefault(); alert('Request submitted! Our strategist will call you shortly.');">
-        <input type="text" placeholder="Your Full Name" required />
-        <input type="tel" placeholder="Phone Number" required />
-        <input type="url" placeholder="Your Website URL" required />
-        <select required>
-          <option value="">Select Primary Goal</option>
-          <option value="sales">Increase Direct Sales</option>
-          <option value="leads">Generate Phone Calls / Leads</option>
-          <option value="seo">Rank #1 on Google Maps / SEO</option>
-          <option value="scale">Scale Existing Ad Budget</option>
-        </select>
-        <button type="submit" class="btn-primary">Get Instant Growth Quote ↗</button>
-      </form>
+  <!-- LEAD GEN SECTION -->
+  <section id="leads" class="section alt-bg">
+    <h2 class="section-title">🎯 High-Intent Lead Generation</h2>
+    <p class="section-subtitle">Capture, filter, and convert qualified leads into paid customers.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">📞</div>
+        <h3>Click-To-Call Google Ads</h3>
+        <p>Run targeted call campaigns to receive incoming calls from customers directly on your mobile.</p>
+        <button class="card-btn" onclick="dealAlert('Google Call Ads')">Start Call Ads</button>
+      </div>
+      <div class="card">
+        <div class="card-icon">💬</div>
+        <h3>WhatsApp Funnel Automation</h3>
+        <p>Instant automated WhatsApp reply bots that filter leads and book sales appointments 24/7.</p>
+        <button class="card-btn" onclick="dealAlert('WhatsApp Funnel')">Get WhatsApp Bot</button>
+      </div>
+      <div class="card">
+        <div class="card-icon">💎</div>
+        <h3>High-Converting Landing Pages</h3>
+        <p>Fast-loading, mobile-friendly landing pages designed specifically for max ad conversion.</p>
+        <button class="card-btn" onclick="dealAlert('Landing Page Design')">Build Landing Page</button>
+      </div>
     </div>
+  </section>
+
+  <!-- SALES AUTOMATION SECTION -->
+  <section id="sales" class="section">
+    <h2 class="section-title">💰 Automated Sales Pipeline</h2>
+    <p class="section-subtitle">Close deals faster with automated follow-ups and CRM tracking.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">🔄</div>
+        <h3>Smart Remarketing Engine</h3>
+        <p>Bring back 95% of lost website visitors using dynamic social media and Google retargeting ads.</p>
+        <button class="card-btn" onclick="dealAlert('Remarketing Engine')">Launch Retargeting</button>
+      </div>
+      <div class="card">
+        <div class="card-icon">📧</div>
+        <h3>Automated Email & SMS Drips</h3>
+        <p>Nurture prospects with personalized multi-step automated email and SMS follow-up sequences.</p>
+        <button class="card-btn" onclick="dealAlert('Email Drip Automation')">Setup Sequence</button>
+      </div>
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h3>Lead Scoring & CRM Sync</h3>
+        <p>Automatically rank incoming leads based on buying intent and assign them to your sales team.</p>
+        <button class="card-btn" onclick="dealAlert('CRM Sync Engine')">Connect CRM</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DATA ANALYTICS SECTION -->
+  <section id="analytics" class="section alt-bg">
+    <h2 class="section-title">📊 Live Data & Analytics Dashboard</h2>
+    <p class="section-subtitle">Track every dollar spent, impression earned, and conversion made in real time.</p>
+    
+    <div class="metrics-row">
+      <div class="metric-box">
+        <h4>Conversion Rate</h4>
+        <div class="value">+34.8%</div>
+        <p>Up from last month</p>
+      </div>
+      <div class="metric-box">
+        <h4>Avg Cost Per Lead</h4>
+        <div class="value">₹145</div>
+        <p>Optimized with AI Bidding</p>
+      </div>
+      <div class="metric-box">
+        <h4>Total Revenue Scaled</h4>
+        <div class="value">₹1.8 Cr+</div>
+        <p>Across active client accounts</p>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <h3>Monthly Growth Telemetry (3D Live Simulation)</h3>
+      <div class="bar-chart">
+        <div class="bar" style="height: 35%;" data-label="Month 1"></div>
+        <div class="bar" style="height: 50%;" data-label="Month 2"></div>
+        <div class="bar" style="height: 70%;" data-label="Month 3"></div>
+        <div class="bar" style="height: 85%;" data-label="Month 4"></div>
+        <div class="bar" style="height: 100%;" data-label="Month 5"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GROWTH SUITE SECTION -->
+  <section id="growth" class="section">
+    <h2 class="section-title">🚀 Full-Scale Growth Suite</h2>
+    <p class="section-subtitle">Omnichannel marketing strategies tailored for explosive multi-market growth.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <h3>AI Budget Optimization</h3>
+        <p>Auto-shift daily ad budgets to channels delivering the highest ROI automatically.</p>
+        <button class="card-btn" onclick="dealAlert('AI Budget Allocation')">Activate AI Allocator</button>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <h3>Multi-Channel Scaling</h3>
+        <p>Run synchronized ad campaigns across Meta (FB/Insta), Google, YouTube, and LinkedIn.</p>
+        <button class="card-btn" onclick="dealAlert('Multi-Channel Ads')">Scale Multi-Channel</button>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏆</div>
+        <h3>Dedicated Growth Director</h3>
+        <p>Get a dedicated growth strategist assigned to your account for custom weekly growth calls.</p>
+        <button class="card-btn" onclick="dealAlert('Dedicated Director')">Assign Growth Director</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALL TO ACTION BANNER -->
+  <section class="cta-banner">
+    <h2>Ready to Scale Your Sales & Leads?</h2>
+    <p>Talk directly with our marketing experts to unlock special agency pricing and custom strategies.</p>
+    <a href="tel:+919316528918" class="btn-primary btn-large">📞 Call Now: +91 9316528918</a>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
-    <p>© 2026 Growth Digital Marketing. All rights reserved.</p>
+    <p>© 2026 AuraGrowth 3D Digital Engine. All Deals Handled via <strong>+91 9316528918</strong></p>
   </footer>
 
   <script src="script.js"></script>
