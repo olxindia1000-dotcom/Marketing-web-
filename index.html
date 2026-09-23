@@ -5,23 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GrowthDigital - Pro Operations Suite</title>
   
-  <!-- Fonts & Icons -->
+  <!-- Fonts & FontAwesome Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- CSS File Link -->
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Animated Canvas Background -->
+  <!-- Background Particle Network Canvas -->
   <canvas id="bgCanvas"></canvas>
 
   <div class="app-container">
     
-    <!-- Sidebar -->
+    <!-- Sidebar Navigation -->
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
@@ -41,17 +41,14 @@
         <button class="nav-btn" data-tab="leads">
           <i class="fa-solid fa-bullseye"></i> <span>Leads Pipeline</span>
         </button>
-        <button class="nav-btn" data-tab="automation">
-          <i class="fa-solid fa-robot"></i> <span>Automation Engine</span>
-        </button>
       </nav>
 
       <div class="sidebar-footer">
-        <p>Made with <span class="heart">❤️</span> by <strong>Divy & Vedant</strong></p>
+        <p>Made with ❤️ by <strong>Divy & Vedant</strong></p>
       </div>
     </aside>
 
-    <!-- Main Content -->
+    <!-- Main Content Area -->
     <main class="main-content">
       
       <header class="top-header">
@@ -59,25 +56,21 @@
           <h1 id="pageTitle">Analytics Telemetry</h1>
           <p id="pageSubTitle">Real-time performance metrics</p>
         </div>
-        <button class="btn btn-primary" onclick="alert('System Operational!')"><i class="fa-solid fa-bolt"></i> Live System</button>
+        <button class="btn btn-primary" onclick="alert('System Operational & Live!')">
+          <i class="fa-solid fa-bolt"></i> Live System
+        </button>
       </header>
 
-      <!-- ANALYTICS TAB -->
+      <!-- TAB 1: ANALYTICS -->
       <section id="analytics" class="tab-content active">
         <div class="kpi-grid">
           <div class="kpi-card">
-            <div class="kpi-header">
-              <span class="kpi-title">Total Network Traffic</span>
-              <button class="btn-edit" onclick="editVal('val-traffic')">Edit</button>
-            </div>
-            <div class="kpi-value" id="val-traffic">312,450</div>
+            <div class="kpi-title">Total Network Traffic</div>
+            <div class="kpi-value">312,450</div>
           </div>
           <div class="kpi-card">
-            <div class="kpi-header">
-              <span class="kpi-title">Avg Session Telemetry</span>
-              <button class="btn-edit" onclick="editVal('val-session')">Edit</button>
-            </div>
-            <div class="kpi-value" id="val-session">5m 14s</div>
+            <div class="kpi-title">Avg Session Telemetry</div>
+            <div class="kpi-value">5m 14s</div>
           </div>
         </div>
 
@@ -87,7 +80,7 @@
         </div>
       </section>
 
-      <!-- SALES TAB -->
+      <!-- TAB 2: SALES -->
       <section id="sales" class="tab-content">
         <div class="content-card">
           <h3>Sales Operations</h3>
@@ -103,7 +96,7 @@
         </div>
       </section>
 
-      <!-- LEADS TAB -->
+      <!-- TAB 3: LEADS -->
       <section id="leads" class="tab-content">
         <div class="content-card">
           <h3>Leads Pipeline</h3>
@@ -119,21 +112,10 @@
         </div>
       </section>
 
-      <!-- AUTOMATION TAB -->
-      <section id="automation" class="tab-content">
-        <div class="content-card">
-          <h3>Automation Execution Terminal</h3>
-          <div class="terminal-body" style="margin-top:15px;">
-            <div>[System Log] Workflow Engine Ready...</div>
-            <div>[System Log] Connected to GitHub Pages Server...</div>
-          </div>
-        </div>
-      </section>
-
     </main>
   </div>
 
   <!-- JavaScript File Link -->
-  <script src="./script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
