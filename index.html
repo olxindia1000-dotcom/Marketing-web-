@@ -3,151 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Figma Component Library Showcase</title>
+  <title>Growth Digital - Enterprise Dashboard</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="canvas-bg"></div>
-
-  <main class="library-wrapper">
+  <div class="dashboard-container">
     
-    <!-- Floating Inspector Card -->
-    <div class="figma-inspector-popup">
-      <div class="popup-header">
-        <span class="dot"></span>
-        <span class="popup-title">Properties from this file</span>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="logo-icon">⚡</span>
+        <h2>Growth<span>Digital</span></h2>
       </div>
-      <div class="popup-row">
-        <label>Type</label>
-        <select class="figma-select">
-          <option>Filled</option>
-          <option>Outlined</option>
-        </select>
-      </div>
-      <div class="popup-row">
-        <label>Color</label>
-        <select class="figma-select">
-          <option>Primary</option>
-          <option>Secondary</option>
-        </select>
-      </div>
-      <div class="popup-row toggle-row">
-        <label>Left Icon</label>
-        <div class="figma-toggle active" id="toggleLeftIcon">
-          <div class="toggle-circle"></div>
-        </div>
-      </div>
-      <div class="popup-row toggle-row">
-        <label>Right Icon</label>
-        <div class="figma-toggle active" id="toggleRightIcon">
-          <div class="toggle-circle"></div>
-        </div>
-      </div>
-      <div class="popup-footer">
-        <span class="chip-tag">Chip</span>
-      </div>
-    </div>
 
-    <!-- Main Components Grid -->
-    <div class="masonry-grid">
+      <nav class="side-menu">
+        <button class="nav-btn active" data-tab="analytics">
+          <span class="icon">📊</span> Analytics
+        </button>
+        <button class="nav-btn" data-tab="sales">
+          <span class="icon">💰</span> Sales
+        </button>
+        <button class="nav-btn" data-tab="leads">
+          <span class="icon">🎯</span> Leads
+        </button>
+        <button class="nav-btn" data-tab="automation">
+          <span class="icon">🤖</span> Automation
+        </button>
+        <button class="nav-btn" data-tab="calculator">
+          <span class="icon">🧮</span> ROI Calculator
+        </button>
+      </nav>
 
-      <!-- Avatars -->
-      <div class="ui-card">
-        <span class="card-category">Molecules</span>
-        <h2 class="card-title">Avatars</h2>
-        <div class="avatars-grid">
-          <div class="avatar-row">
-            <div class="avatar sm">👤</div>
-            <div class="avatar sm">👨‍💻</div>
-            <div class="avatar sm">👩‍💼</div>
-            <div class="avatar sm">🚀</div>
-          </div>
-          <div class="avatar-row">
-            <div class="avatar md">😎</div>
-            <div class="avatar md">🎨</div>
-            <div class="avatar md active-ring">🔥</div>
+      <div class="sidebar-footer">
+        <div class="user-card">
+          <span class="user-avatar">👨‍💻</span>
+          <div>
+            <h4>Vedant & Divy</h4>
+            <p>Admin Access</p>
           </div>
         </div>
       </div>
+    </aside>
 
-      <!-- Chips -->
-      <div class="ui-card">
-        <span class="card-category">Molecules</span>
-        <h2 class="card-title">Tag / Chip</h2>
-        <div class="chips-grid">
-          <div class="chip-row">
-            <span class="chip-item dark">Tag</span>
-            <span class="chip-item purple">Tag</span>
-            <span class="chip-item blue">Tag</span>
-            <span class="chip-item green">Tag</span>
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+      <!-- Header -->
+      <header class="top-header">
+        <h1 id="page-title">Analytics Dashboard</h1>
+        <div class="header-actions">
+          <span class="live-status">🟢 Live Telemetry</span>
+          <button class="btn-primary" onclick="alert('Exporting Report...')">📥 Export Data</button>
+        </div>
+      </header>
+
+      <!-- TAB 1: ANALYTICS -->
+      <section id="tab-analytics" class="tab-content active">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-title">Total Traffic</span>
+            <div class="kpi-value">124.5K</div>
+            <span class="kpi-trend positive">+18.4% ↑</span>
           </div>
-          <div class="chip-row">
-            <span class="chip-item light-purple">Tag ✕</span>
-            <span class="chip-item light-blue">Tag ✕</span>
-            <span class="chip-item light-green">Tag ✕</span>
+          <div class="kpi-card">
+            <span class="kpi-title">Avg. Conversion</span>
+            <div class="kpi-value">4.8%</div>
+            <span class="kpi-trend positive">+2.1% ↑</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-title">Bounce Rate</span>
+            <div class="kpi-value">32.1%</div>
+            <span class="kpi-trend negative">-4.5% ↓</span>
           </div>
         </div>
-      </div>
 
-      <!-- Selection Items -->
-      <div class="ui-card">
-        <span class="card-category">Molecules</span>
-        <h2 class="card-title">Selection Items</h2>
-        <div class="selection-columns">
-          <div class="sel-col">
-            <h4>Checkbox</h4>
-            <label><input type="checkbox"> Label</label>
-            <label><input type="checkbox" checked> Label</label>
-          </div>
-          <div class="sel-col">
-            <h4>Radio</h4>
-            <label><input type="radio" name="r1"> Label</label>
-            <label><input type="radio" name="r1" checked> Label</label>
-          </div>
-          <div class="sel-col">
-            <h4>Toggle</h4>
-            <input type="checkbox" class="interactive-toggle" checked>
+        <div class="chart-card">
+          <h3>Monthly Growth Telemetry</h3>
+          <div class="bar-chart">
+            <div class="bar" style="height: 40%;" data-val="12K"><span>Jan</span></div>
+            <div class="bar" style="height: 60%;" data-val="24K"><span>Feb</span></div>
+            <div class="bar" style="height: 75%;" data-val="38K"><span>Mar</span></div>
+            <div class="bar" style="height: 90%;" data-val="52K"><span>Apr</span></div>
+            <div class="bar" style="height: 100%;" data-val="68K"><span>May</span></div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Input Field -->
-      <div class="ui-card">
-        <span class="card-category">Molecules</span>
-        <h2 class="card-title">Input Field</h2>
-        <div class="inputs-stack">
-          <div class="input-group">
-            <label>Title</label>
-            <div class="input-box">
-              <span class="icon left-ic">🔍</span>
-              <input type="text" placeholder="Search..." />
-              <span class="icon right-ic">ⓘ</span>
+      <!-- TAB 2: SALES -->
+      <section id="tab-sales" class="tab-content">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span class="kpi-title">Total Revenue</span>
+            <div class="kpi-value">₹38,40,000</div>
+            <span class="kpi-trend positive">+24% ↑</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-title">Deals Closed</span>
+            <div class="kpi-value">142</div>
+            <span class="kpi-trend positive">+12 ↑</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-title">Avg Deal Value</span>
+            <div class="kpi-value">₹27,042</div>
+            <span class="kpi-trend positive">+8% ↑</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: LEADS -->
+      <section id="tab-leads" class="tab-content">
+        <div class="table-card">
+          <h3>Recent Inbound Leads</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Source</th>
+                <th>Status</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Rajesh Kumar</td>
+                <td>Google Ads</td>
+                <td><span class="badge new">New</span></td>
+                <td>₹45,000</td>
+              </tr>
+              <tr>
+                <td>Priya Patel</td>
+                <td>Meta Campaign</td>
+                <td><span class="badge in-progress">In Progress</span></td>
+                <td>₹85,000</td>
+              </tr>
+              <tr>
+                <td>Amit Sharma</td>
+                <td>SEO Inbound</td>
+                <td><span class="badge closed">Won</span></td>
+                <td>₹1,20,000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 4: AUTOMATION -->
+      <section id="tab-automation" class="tab-content">
+        <div class="automation-grid">
+          <div class="auto-card">
+            <div class="auto-icon">🤖</div>
+            <h3>WhatsApp Lead Nurture</h3>
+            <p>Automated 3-step messaging sequence on new lead signup.</p>
+            <span class="status-pill active">Active</span>
+          </div>
+          <div class="auto-card">
+            <div class="auto-icon">📧</div>
+            <h3>Email Retargeting</h3>
+            <p>Re-engage dropped carts after 24 hours automatically.</p>
+            <span class="status-pill active">Active</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: ROI CALCULATOR -->
+      <section id="tab-calculator" class="tab-content">
+        <div class="calc-card">
+          <h3>Growth ROI Calculator</h3>
+          <div class="calc-grid">
+            <div class="input-group">
+              <label>Monthly Ad Spend (₹)</label>
+              <input type="number" id="adSpend" value="50000" oninput="calculateROI()">
+            </div>
+            <div class="input-group">
+              <label>Cost Per Lead (CPL) (₹)</label>
+              <input type="number" id="cpl" value="250" oninput="calculateROI()">
+            </div>
+            <div class="input-group">
+              <label>Closing Rate (%)</label>
+              <input type="number" id="closeRate" value="10" oninput="calculateROI()">
+            </div>
+            <div class="input-group">
+              <label>Avg Customer Value (₹)</label>
+              <input type="number" id="custValue" value="15000" oninput="calculateROI()">
+            </div>
+          </div>
+
+          <div class="calc-results">
+            <div class="res-box">
+              <span>Expected Leads</span>
+              <h4 id="resLeads">200</h4>
+            </div>
+            <div class="res-box">
+              <span>Closed Deals</span>
+              <h4 id="resDeals">20</h4>
+            </div>
+            <div class="res-box highlight">
+              <span>Estimated Revenue</span>
+              <h4 id="resRevenue">₹3,00,000</h4>
+            </div>
+            <div class="res-box highlight">
+              <span>Estimated ROI</span>
+              <h4 id="resROI">500%</h4>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Tooltips -->
-      <div class="ui-card">
-        <span class="card-category">Molecules</span>
-        <h2 class="card-title">Tooltips</h2>
-        <div class="tooltips-stack">
-          <div class="tooltip-box dark">I am a tooltip</div>
-          <div class="tooltip-box green">I am a tooltip</div>
-        </div>
-      </div>
+    </main>
 
-    </div>
-
-    <!-- Bottom Banner -->
-    <div class="bottom-banner-badge">
-      <div class="puzzle-icon">🧩</div>
-      <h2>Well Organized Component Library</h2>
-    </div>
-
-  </main>
+  </div>
 
   <script src="script.js"></script>
 </body>
