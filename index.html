@@ -5,23 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GrowthDigital - Pro Operations Suite</title>
   
-  <!-- Google Fonts & FontAwesome Icons -->
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="styles.css">
+  <!-- CSS File Link -->
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 
-  <!-- Particle Background Network Canvas -->
+  <!-- Animated Canvas Background -->
   <canvas id="bgCanvas"></canvas>
 
   <div class="app-container">
     
-    <!-- Sidebar Navigation -->
+    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
@@ -44,12 +44,6 @@
         <button class="nav-btn" data-tab="automation">
           <i class="fa-solid fa-robot"></i> <span>Automation Engine</span>
         </button>
-        <button class="nav-btn" data-tab="workflow-builder">
-          <i class="fa-solid fa-diagram-project"></i> <span>Workflow Builder</span>
-        </button>
-        <button class="nav-btn" data-tab="roi">
-          <i class="fa-solid fa-calculator"></i> <span>ROI Calculator</span>
-        </button>
       </nav>
 
       <div class="sidebar-footer">
@@ -57,193 +51,81 @@
       </div>
     </aside>
 
-    <!-- Main Content Area -->
+    <!-- Main Content -->
     <main class="main-content">
       
-      <!-- Top Header -->
       <header class="top-header">
         <div class="header-title">
           <h1 id="pageTitle">Analytics Telemetry</h1>
-          <p id="pageSubTitle">Real-time performance metrics and editable network stats</p>
+          <p id="pageSubTitle">Real-time performance metrics</p>
         </div>
-        <div class="header-actions">
-          <span class="status-badge"><i class="fa-solid fa-circle"></i> System Live</span>
-          <button class="btn btn-secondary" onclick="runGlobalTest()"><i class="fa-solid fa-bolt"></i> Global Test</button>
-        </div>
+        <button class="btn btn-primary" onclick="alert('System Operational!')"><i class="fa-solid fa-bolt"></i> Live System</button>
       </header>
 
-      <!-- TAB 1: ANALYTICS -->
+      <!-- ANALYTICS TAB -->
       <section id="analytics" class="tab-content active">
         <div class="kpi-grid">
           <div class="kpi-card">
             <div class="kpi-header">
               <span class="kpi-title">Total Network Traffic</span>
-              <button class="btn-edit" onclick="openEditMetricModal('traffic')"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+              <button class="btn-edit" onclick="editVal('val-traffic')">Edit</button>
             </div>
             <div class="kpi-value" id="val-traffic">312,450</div>
-            <div class="kpi-trend positive" id="trend-traffic">+28.4% ↑</div>
           </div>
-
           <div class="kpi-card">
             <div class="kpi-header">
               <span class="kpi-title">Avg Session Telemetry</span>
-              <button class="btn-edit" onclick="openEditMetricModal('session')"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+              <button class="btn-edit" onclick="editVal('val-session')">Edit</button>
             </div>
             <div class="kpi-value" id="val-session">5m 14s</div>
-            <div class="kpi-trend positive" id="trend-session">+15.2% ↑</div>
-          </div>
-
-          <div class="kpi-card">
-            <div class="kpi-header">
-              <span class="kpi-title">Network Bounce Rate</span>
-              <button class="btn-edit" onclick="openEditMetricModal('bounce')"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
-            </div>
-            <div class="kpi-value" id="val-bounce">24.1%</div>
-            <div class="kpi-trend negative" id="trend-bounce">-6.8% ↓</div>
-          </div>
-
-          <div class="kpi-card">
-            <div class="kpi-header">
-              <span class="kpi-title">Active Conversions</span>
-              <button class="btn-edit" onclick="openEditMetricModal('conversions')"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
-            </div>
-            <div class="kpi-value" id="val-conversions">14,820</div>
-            <div class="kpi-trend positive" id="trend-conversions">+32.1% ↑</div>
           </div>
         </div>
 
         <div class="content-card">
-          <div class="card-header">
-            <h3>Traffic Telemetry Bar Chart</h3>
-            <button class="btn btn-primary" onclick="randomizeTrafficData()"><i class="fa-solid fa-arrows-rotate"></i> Update Graph</button>
-          </div>
-          <div class="chart-container" id="barChart"></div>
+          <h3>Live Telemetry Panel</h3>
+          <p style="margin-top:10px; color:#94a3b8;">Welcome to GrowthDigital Dashboard! Manage sales, leads, and workflow automation seamlessly.</p>
         </div>
       </section>
 
-      <!-- TAB 2: SALES OPERATIONS -->
+      <!-- SALES TAB -->
       <section id="sales" class="tab-content">
         <div class="content-card">
-          <div class="card-header">
-            <h3>Sales Operations & Transactions</h3>
-            <button class="btn btn-primary" onclick="openAddSaleModal()"><i class="fa-solid fa-plus"></i> Add Transaction</button>
-          </div>
-          <div class="table-responsive">
-            <table class="custom-table">
-              <thead>
-                <tr>
-                  <th>Client / Deal</th>
-                  <th>Amount</th>
-                  <th>Status</th>
-                  <th>Date</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="salesTableBody"></tbody>
-            </table>
-          </div>
+          <h3>Sales Operations</h3>
+          <table class="custom-table" style="margin-top:15px;">
+            <thead>
+              <tr><th>Client</th><th>Amount</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Apex Tech Labs</td><td>$12,400</td><td>Completed</td></tr>
+              <tr><td>Nexus Media</td><td>$8,150</td><td>Pending</td></tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
-      <!-- TAB 3: LEADS PIPELINE -->
+      <!-- LEADS TAB -->
       <section id="leads" class="tab-content">
         <div class="content-card">
-          <div class="card-header">
-            <h3>Leads Management</h3>
-            <button class="btn btn-primary" onclick="openAddLeadModal()"><i class="fa-solid fa-user-plus"></i> Add New Lead</button>
-          </div>
-          <div class="table-responsive">
-            <table class="custom-table">
-              <thead>
-                <tr>
-                  <th>Lead Name</th>
-                  <th>Email</th>
-                  <th>Source</th>
-                  <th>Stage</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="leadsTableBody"></tbody>
-            </table>
-          </div>
+          <h3>Leads Pipeline</h3>
+          <table class="custom-table" style="margin-top:15px;">
+            <thead>
+              <tr><th>Name</th><th>Email</th><th>Source</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Aarav Sharma</td><td>aarav@tech.in</td><td>Google Ads</td></tr>
+              <tr><td>Priya Patel</td><td>priya@design.com</td><td>LinkedIn</td></tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
-      <!-- TAB 4: AUTOMATION ENGINE -->
+      <!-- AUTOMATION TAB -->
       <section id="automation" class="tab-content">
-        <div class="card-header" style="margin-bottom: 16px;">
-          <div>
-            <h3>Active Workflow Automation Rules</h3>
-            <p style="font-size:12px; color:#64748b;">Manage triggers and execute live sequence tests.</p>
-          </div>
-          <button class="btn btn-primary" onclick="openAddWorkflowModal()"><i class="fa-solid fa-plus"></i> Create Rule</button>
-        </div>
-
-        <div class="workflow-list" id="workflowList"></div>
-
-        <div class="content-card terminal-card" style="margin-top: 20px;">
-          <div class="card-header">
-            <h3><i class="fa-solid fa-terminal"></i> Automation Execution Terminal</h3>
-            <button class="btn-clear" onclick="clearLogs()">Clear Terminal</button>
-          </div>
-          <div class="terminal-body" id="terminalLogs">
-            <div class="log-line">[System 10:00:00] GrowthDigital Terminal Initialized...</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB 5: WORKFLOW BUILDER -->
-      <section id="workflow-builder" class="tab-content">
         <div class="content-card">
-          <div class="card-header">
-            <h3>Visual Pipeline Node Builder</h3>
-            <button class="btn btn-primary" onclick="addNodeStep()"><i class="fa-solid fa-plus"></i> Add Step Node</button>
-          </div>
-          <div class="visual-canvas" id="visualCanvas"></div>
-        </div>
-      </section>
-
-      <!-- TAB 6: ROI CALCULATOR -->
-      <section id="roi" class="tab-content">
-        <div class="roi-grid">
-          <div class="content-card">
-            <h3>ROI Parameters</h3>
-            <div class="form-group">
-              <label>Monthly Ad Spend ($)</label>
-              <input type="number" id="roiSpend" value="5000" oninput="calculateROI()">
-            </div>
-            <div class="form-group">
-              <label>Cost Per Lead ($)</label>
-              <input type="number" id="roiCpl" value="25" oninput="calculateROI()">
-            </div>
-            <div class="form-group">
-              <label>Conversion Rate (%)</label>
-              <input type="number" id="roiConv" value="10" oninput="calculateROI()">
-            </div>
-            <div class="form-group">
-              <label>Average Deal Value ($)</label>
-              <input type="number" id="roiDeal" value="1500" oninput="calculateROI()">
-            </div>
-          </div>
-
-          <div class="content-card roi-result-card">
-            <h3>Calculated Return</h3>
-            <div class="roi-stat">
-              <span>Estimated Leads:</span>
-              <strong id="resLeads">200</strong>
-            </div>
-            <div class="roi-stat">
-              <span>Closed Deals:</span>
-              <strong id="resDeals">20</strong>
-            </div>
-            <div class="roi-stat">
-              <span>Estimated Revenue:</span>
-              <strong id="resRevenue" style="color:#00f2fe;">$30,000</strong>
-            </div>
-            <div class="roi-stat highlight">
-              <span>Net ROI:</span>
-              <strong id="resROI" style="color:#10b981;">500%</strong>
-            </div>
+          <h3>Automation Execution Terminal</h3>
+          <div class="terminal-body" style="margin-top:15px;">
+            <div>[System Log] Workflow Engine Ready...</div>
+            <div>[System Log] Connected to GitHub Pages Server...</div>
           </div>
         </div>
       </section>
@@ -251,22 +133,7 @@
     </main>
   </div>
 
-  <!-- GENERIC MODAL -->
-  <div class="modal" id="genericModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 id="modalTitle">Modal Title</h3>
-        <button class="close-btn" onclick="closeModal()">&times;</button>
-      </div>
-      <div class="modal-body" id="modalBody"></div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-        <button class="btn btn-primary" id="modalSaveBtn">Save Changes</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- JavaScript File -->
-  <script src="script.js"></script>
+  <!-- JavaScript File Link -->
+  <script src="./script.js"></script>
 </body>
 </html>
