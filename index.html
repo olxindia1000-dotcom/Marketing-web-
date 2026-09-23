@@ -1,374 +1,280 @@
 <!DOCTYPE html>
 <html lang="gu">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Growth Digital - Enterprise Operations Suite</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrowthDigital - Pro Operations Suite</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- SIDEBAR NAVIGATION -->
-  <aside class="sidebar">
-    <div>
-      <div class="brand-box">
-        <div class="brand-icon">⚡</div>
+  <!-- Particle Background Canvas -->
+  <canvas id="bgCanvas"></canvas>
+
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
         <div class="brand-text">
-          <h2>Growth<span>Digital</span></h2>
-          <p>Pro Operations Suite</p>
+          <h2>GrowthDigital</h2>
+          <span>PRO OPERATIONS SUITE</span>
         </div>
       </div>
 
-      <ul class="nav-list">
-        <li class="nav-item">
-          <button class="nav-btn active" onclick="switchTab('analytics', this)">
-            <span>📊</span> Analytics
-          </button>
-        </li>
-        <li class="nav-item">
-          <button class="nav-btn" onclick="switchTab('sales', this)">
-            <span>💰</span> Sales
-          </button>
-        </li>
-        <li class="nav-item">
-          <button class="nav-btn" onclick="switchTab('leads', this)">
-            <span>🎯</span> Leads Pipeline
-          </button>
-        </li>
-        <li class="nav-item">
-          <button class="nav-btn" onclick="switchTab('automation', this)">
-            <span>🤖</span> Automation
-          </button>
-        </li>
-        <li class="nav-item">
-          <button class="nav-btn" onclick="switchTab('calculator', this)">
-            <span>🧮</span> ROI Calculator
-          </button>
-        </li>
-      </ul>
-    </div>
+      <nav class="nav-menu">
+        <button class="nav-btn active" data-tab="analytics">
+          <i class="fa-solid fa-chart-line"></i> <span>Analytics</span>
+        </button>
+        <button class="nav-btn" data-tab="sales">
+          <i class="fa-solid fa-sack-dollar"></i> <span>Sales Operations</span>
+        </button>
+        <button class="nav-btn" data-tab="leads">
+          <i class="fa-solid fa-bullseye"></i> <span>Leads Pipeline</span>
+        </button>
+        <button class="nav-btn" data-tab="automation">
+          <i class="fa-solid fa-robot"></i> <span>Automation Engine</span>
+        </button>
+        <button class="nav-btn" data-tab="workflow-builder">
+          <i class="fa-solid fa-diagram-project"></i> <span>Workflow Builder</span>
+        </button>
+        <button class="nav-btn" data-tab="roi">
+          <i class="fa-solid fa-calculator"></i> <span>ROI Calculator</span>
+        </button>
+      </nav>
 
-    <div class="sidebar-footer">
-      <p>Made with ❤️ by</p>
-      <strong>Divy &amp; Vedant</strong>
-    </div>
-  </aside>
-
-  <!-- MAIN CONTENT AREA -->
-  <main class="content-area">
-    <header class="top-bar">
-      <div class="page-title">
-        <h1 id="title-text">Analytics Telemetry</h1>
-        <p id="title-desc">Real-time digital growth &amp; performance metric dashboard</p>
+      <div class="sidebar-footer">
+        <p>Made with <span class="heart">❤️</span> by <strong>Divy & Vedant</strong></p>
       </div>
-      <div class="live-badge">
-        <div class="dot-pulse"></div> Live System
-      </div>
-    </header>
+    </aside>
 
-    <!-- TAB 1: ANALYTICS -->
-    <section id="tab-analytics" class="tab-pane active">
-      <div class="grid-3">
-        <div class="card">
-          <span class="card-label">Total Visitors</span>
-          <div class="card-value" id="val-visitors">284,920</div>
-          <span class="tag-trend up">+24.8% ↑</span>
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Top Header -->
+      <header class="top-header">
+        <div class="header-title">
+          <h1 id="pageTitle">Analytics Telemetry</h1>
+          <p id="pageSubTitle">Real-time performance metrics and editable network stats</p>
         </div>
-        <div class="card">
-          <span class="card-label">Avg Session Duration</span>
-          <div class="card-value">4m 32s</div>
-          <span class="tag-trend up">+12.1% ↑</span>
+        <div class="header-actions">
+          <span class="status-badge"><i class="fa-solid fa-circle"></i> System Live</span>
+          <button class="btn btn-secondary" onclick="runGlobalTest()"><i class="fa-solid fa-bolt"></i> Global Test</button>
         </div>
-        <div class="card">
-          <span class="card-label">Bounce Rate</span>
-          <div class="card-value">28.4%</div>
-          <span class="tag-trend down">-5.2% ↓</span>
-        </div>
-      </div>
+      </header>
 
-      <div class="card chart-container">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-          <h3>Monthly Traffic &amp; Conversion Growth</h3>
-          <select id="analytics-filter" onchange="updateAnalyticsChart()" class="custom-select">
-            <option value="6m">Last 6 Months</option>
-            <option value="3m">Last 3 Months</option>
-            <option value="1y">This Year</option>
-          </select>
-        </div>
-        <div class="bar-graph" id="traffic-graph">
-          <div class="graph-bar" style="height: 40%;"><span>Jan</span><div class="bar-val">120k</div></div>
-          <div class="graph-bar" style="height: 60%;"><span>Feb</span><div class="bar-val">180k</div></div>
-          <div class="graph-bar" style="height: 75%;"><span>Mar</span><div class="bar-val">210k</div></div>
-          <div class="graph-bar" style="height: 90%;"><span>Apr</span><div class="bar-val">250k</div></div>
-          <div class="graph-bar" style="height: 100%;"><span>May</span><div class="bar-val">284k</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TAB 2: SALES -->
-    <section id="tab-sales" class="tab-pane">
-      <div class="filter-bar">
-        <span>Filter Period:</span>
-        <button class="filter-btn active" onclick="filterSales('all', this)">All Time</button>
-        <button class="filter-btn" onclick="filterSales('month', this)">This Month</button>
-        <button class="filter-btn" onclick="filterSales('week', this)">This Week</button>
-      </div>
-
-      <div class="grid-3">
-        <div class="card">
-          <span class="card-label">Gross Sales Revenue</span>
-          <div class="card-value" id="sales-revenue">₹48,90,000</div>
-          <span class="tag-trend up">+32.4% ↑</span>
-        </div>
-        <div class="card">
-          <span class="card-label">Closed Revenue Deals</span>
-          <div class="card-value" id="sales-deals">186</div>
-          <span class="tag-trend up">+14 deals</span>
-        </div>
-        <div class="card">
-          <span class="card-label">Average Contract Value</span>
-          <div class="card-value" id="sales-acv">₹26,290</div>
-          <span class="tag-trend up">+8.1% ↑</span>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top: 25px;">
-        <h3>Recent Closed Transactions</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Client / Account</th>
-              <th>Package</th>
-              <th>Amount</th>
-              <th>Closed Date</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="sales-table-body">
-            <tr>
-              <td>Apex Tech Solutions</td>
-              <td>Enterprise Suite</td>
-              <td>₹4,50,000</td>
-              <td>2026-09-20</td>
-              <td><span class="status-badge closed">Paid &amp; Active</span></td>
-            </tr>
-            <tr>
-              <td>Nexus Digital Media</td>
-              <td>Pro Growth Pack</td>
-              <td>₹2,10,000</td>
-              <td>2026-09-18</td>
-              <td><span class="status-badge closed">Paid &amp; Active</span></td>
-            </tr>
-            <tr>
-              <td>Starlight Retail</td>
-              <td>Standard Retainer</td>
-              <td>₹1,25,000</td>
-              <td>2026-09-15</td>
-              <td><span class="status-badge closed">Paid &amp; Active</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- TAB 3: LEADS PIPELINE -->
-    <section id="tab-leads" class="tab-pane">
-      <div class="action-bar">
-        <input type="text" id="lead-search" placeholder="🔍 Search leads by name or source..." oninput="searchLeads()" class="search-input" />
-        <button onclick="openLeadModal()" class="primary-btn">+ Add New Lead</button>
-      </div>
-
-      <div class="card" style="margin-top:20px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-          <h3>Active Inbound Opportunities</h3>
-          <span id="lead-count-badge" class="count-badge">3 Total Leads</span>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Client Name</th>
-              <th>Source / Channel</th>
-              <th>Status</th>
-              <th>Estimated Value</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="leads-table-body">
-            <!-- Dynamically populated -->
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- TAB 4: AUTOMATION -->
-    <section id="tab-automation" class="tab-pane">
-      <div class="action-bar" style="margin-bottom: 20px;">
-        <h3>Active Workflow Automation Rules</h3>
-        <button onclick="openRuleModal()" class="primary-btn">+ Create Workflow Rule</button>
-      </div>
-
-      <div class="grid-3" id="automation-rules-grid">
-        <!-- Rule 1 -->
-        <div class="card">
-          <div class="card-header-flex">
-            <span class="status-badge new">WORKFLOW #1</span>
-            <label class="switch">
-              <input type="checkbox" checked onchange="toggleWorkflow('WhatsApp Nurture', this)">
-              <span class="slider round"></span>
-            </label>
+      <!-- TAB 1: ANALYTICS -->
+      <section id="analytics" class="tab-content active">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Total Network Traffic</span>
+              <button class="btn-edit" onclick="openEditMetricModal('traffic')"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+            </div>
+            <div class="kpi-value" id="val-traffic">312,450</div>
+            <div class="kpi-trend positive" id="trend-traffic">+28.4% ↑</div>
           </div>
-          <h3 style="margin-top:15px;">WhatsApp Instant Nurture</h3>
-          <p style="color:var(--text-muted); font-size:0.85rem; margin-top:8px;">
-            <strong>Trigger:</strong> On New Lead Added<br>
-            <strong>Action:</strong> Send Instant WhatsApp Welcome Message
-          </p>
-          <button onclick="runAutomationTest('WhatsApp Instant Nurture')" class="secondary-btn" style="margin-top:15px; width:100%;">
-            ▶ Run Test Trigger
-          </button>
-        </div>
 
-        <!-- Rule 2 -->
-        <div class="card">
-          <div class="card-header-flex">
-            <span class="status-badge new">WORKFLOW #2</span>
-            <label class="switch">
-              <input type="checkbox" checked onchange="toggleWorkflow('Lead Scoring Bot', this)">
-              <span class="slider round"></span>
-            </label>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Avg Session Telemetry</span>
+              <button class="btn-edit" onclick="openEditMetricModal('session')"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+            </div>
+            <div class="kpi-value" id="val-session">5m 14s</div>
+            <div class="kpi-trend positive" id="trend-session">+15.2% ↑</div>
           </div>
-          <h3 style="margin-top:15px;">Lead Scoring &amp; Tagging Bot</h3>
-          <p style="color:var(--text-muted); font-size:0.85rem; margin-top:8px;">
-            <strong>Trigger:</strong> Form Submitted<br>
-            <strong>Action:</strong> Calculate Lead Score &amp; Assign Priority Tag
-          </p>
-          <button onclick="runAutomationTest('Lead Scoring Bot')" class="secondary-btn" style="margin-top:15px; width:100%;">
-            ▶ Run Test Trigger
-          </button>
-        </div>
-      </div>
 
-      <!-- LIVE TERMINAL LOGS -->
-      <div class="card" style="margin-top:25px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-          <h3>Live System &amp; Automation Logs</h3>
-          <button onclick="clearLogs()" class="text-btn">Clear Logs</button>
-        </div>
-        <div id="terminal-logs" class="terminal-box">
-          <div class="log-entry">[System 10:42:15] Rule #1 WhatsApp Nurture triggered for +91 9876543210 (Success)</div>
-          <div class="log-entry">[System 10:38:00] Rule #2 Lead Scoring Bot calculated score 85 for Aarav Sharma</div>
-          <div class="log-entry">[System 09:15:22] System telemetry initialized successfully.</div>
-        </div>
-      </div>
-    </section>
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Network Bounce Rate</span>
+              <button class="btn-edit" onclick="openEditMetricModal('bounce')"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+            </div>
+            <div class="kpi-value" id="val-bounce">24.1%</div>
+            <div class="kpi-trend negative" id="trend-bounce">-6.8% ↓</div>
+          </div>
 
-    <!-- TAB 5: CALCULATOR -->
-    <section id="tab-calculator" class="tab-pane">
-      <div class="card">
-        <h3>Interactive Growth &amp; ROI Calculator</h3>
-        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 25px;">Adjust ad budget parameters to calculate projected return on investment instantly.</p>
-        
-        <div class="calc-grid">
-          <div class="form-group">
-            <label>Monthly Ad Spend (₹)</label>
-            <input type="number" id="spend" value="50000" oninput="calculateROI()" />
-          </div>
-          <div class="form-group">
-            <label>Cost Per Lead (CPL) (₹)</label>
-            <input type="number" id="cpl" value="250" oninput="calculateROI()" />
-          </div>
-          <div class="form-group">
-            <label>Closing Conversion Rate (%)</label>
-            <input type="number" id="closeRate" value="10" oninput="calculateROI()" />
-          </div>
-          <div class="form-group">
-            <label>Avg Customer Value (₹)</label>
-            <input type="number" id="custValue" value="20000" oninput="calculateROI()" />
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Active Conversions</span>
+              <button class="btn-edit" onclick="openEditMetricModal('conversions')"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+            </div>
+            <div class="kpi-value" id="val-conversions">14,820</div>
+            <div class="kpi-trend positive" id="trend-conversions">+32.1% ↑</div>
           </div>
         </div>
 
-        <div class="results-grid">
-          <div class="res-box">
-            <span>Expected Leads</span>
-            <h3 id="resLeads">200</h3>
+        <div class="content-card">
+          <div class="card-header">
+            <h3>Traffic Telemetry Bar Chart</h3>
+            <button class="btn btn-primary" onclick="randomizeTrafficData()"><i class="fa-solid fa-arrows-rotate"></i> Update Graph</button>
           </div>
-          <div class="res-box">
-            <span>Closed Deals</span>
-            <h3 id="resDeals">20</h3>
-          </div>
-          <div class="res-box active-res">
-            <span>Projected Revenue</span>
-            <h3 id="resRevenue">₹4,00,000</h3>
-          </div>
-          <div class="res-box active-res">
-            <span>Estimated ROI</span>
-            <h3 id="resROI">700%</h3>
+          <div class="chart-container" id="barChart">
+            <!-- Dynamic Bars Generated by JS -->
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- FOOTER CREDIT -->
-    <footer class="page-footer">
-      Growth Digital Enterprise Operations Suite — Built by <strong>Divy &amp; Vedant</strong>
-    </footer>
-  </main>
+      <!-- TAB 2: SALES OPERATIONS -->
+      <section id="sales" class="tab-content">
+        <div class="content-card">
+          <div class="card-header">
+            <h3>Sales Operations & Transactions</h3>
+            <button class="btn btn-primary" onclick="openAddSaleModal()"><i class="fa-solid fa-plus"></i> Add Transaction</button>
+          </div>
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Client / Deal</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="salesTableBody">
+                <!-- Sales Rows dynamically added -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
 
-  <!-- ADD LEAD MODAL -->
-  <div id="lead-modal" class="modal-backdrop">
-    <div class="modal-card">
-      <h3>Add New Inbound Lead</h3>
-      <form onsubmit="saveLead(event)">
-        <div class="form-group" style="margin-top:15px;">
-          <label>Lead Full Name</label>
-          <input type="text" id="modal-lead-name" required placeholder="e.g. Rahul Verma" />
+      <!-- TAB 3: LEADS PIPELINE -->
+      <section id="leads" class="tab-content">
+        <div class="content-card">
+          <div class="card-header">
+            <h3>Leads Management</h3>
+            <button class="btn btn-primary" onclick="openAddLeadModal()"><i class="fa-solid fa-user-plus"></i> Add New Lead</button>
+          </div>
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Lead Name</th>
+                  <th>Email</th>
+                  <th>Source</th>
+                  <th>Stage</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="leadsTableBody">
+                <!-- Leads Rows dynamically added -->
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="form-group" style="margin-top:12px;">
-          <label>Acquisition Channel / Source</label>
-          <input type="text" id="modal-lead-channel" required placeholder="e.g. Google Ads, Meta, SEO" />
+      </section>
+
+      <!-- TAB 4: AUTOMATION ENGINE -->
+      <section id="automation" class="tab-content">
+        <div class="automation-header">
+          <div>
+            <h3>Active Workflow Automation Rules</h3>
+            <p>Manage triggers, test rules live with 3-step sequence logging.</p>
+          </div>
+          <button class="btn btn-primary" onclick="openAddWorkflowModal()"><i class="fa-solid fa-plus"></i> Create Rule</button>
         </div>
-        <div class="form-group" style="margin-top:12px;">
-          <label>Estimated Value (₹)</label>
-          <input type="number" id="modal-lead-value" required placeholder="e.g. 75000" />
+
+        <div class="workflow-list" id="workflowList">
+          <!-- Workflow Cards generated by JS -->
         </div>
-        <div class="form-group" style="margin-top:12px;">
-          <label>Initial Status</label>
-          <select id="modal-lead-status" class="custom-select" style="width:100%;">
-            <option value="New Lead">New Lead</option>
-            <option value="In Review">In Review</option>
-            <option value="Won">Won</option>
-          </select>
+
+        <div class="content-card terminal-card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-terminal"></i> Automation Execution Terminal</h3>
+            <button class="btn-clear" onclick="clearLogs()">Clear Terminal</button>
+          </div>
+          <div class="terminal-body" id="terminalLogs">
+            <div class="log-line info">[System 10:00:00] GrowthDigital Operations Terminal Ready.</div>
+          </div>
         </div>
-        <div class="modal-actions">
-          <button type="button" onclick="closeLeadModal()" class="secondary-btn">Cancel</button>
-          <button type="submit" class="primary-btn">Save Lead</button>
+      </section>
+
+      <!-- TAB 5: WORKFLOW BUILDER (Visual Pipeline) -->
+      <section id="workflow-builder" class="tab-content">
+        <div class="content-card">
+          <div class="card-header">
+            <h3>Visual Pipeline Node Builder</h3>
+            <button class="btn btn-primary" onclick="addNodeStep()"><i class="fa-solid fa-plus"></i> Add Step Node</button>
+          </div>
+          <div class="visual-canvas" id="visualCanvas">
+            <!-- Visual Nodes Canvas -->
+          </div>
         </div>
-      </form>
-    </div>
+      </section>
+
+      <!-- TAB 6: ROI CALCULATOR -->
+      <section id="roi" class="tab-content">
+        <div class="roi-grid">
+          <div class="content-card">
+            <h3>ROI Parameters</h3>
+            <div class="form-group">
+              <label>Monthly Ad Spend ($)</label>
+              <input type="number" id="roiSpend" value="5000" oninput="calculateROI()">
+            </div>
+            <div class="form-group">
+              <label>Cost Per Lead ($)</label>
+              <input type="number" id="roiCpl" value="25" oninput="calculateROI()">
+            </div>
+            <div class="form-group">
+              <label>Conversion Rate (%)</label>
+              <input type="number" id="roiConv" value="10" oninput="calculateROI()">
+            </div>
+            <div class="form-group">
+              <label>Average Deal Value ($)</label>
+              <input type="number" id="roiDeal" value="1500" oninput="calculateROI()">
+            </div>
+          </div>
+
+          <div class="content-card roi-result-card">
+            <h3>Calculated Return</h3>
+            <div class="roi-stat">
+              <span>Estimated Leads:</span>
+              <strong id="resLeads">200</strong>
+            </div>
+            <div class="roi-stat">
+              <span>Closed Deals:</span>
+              <strong id="resDeals">20</strong>
+            </div>
+            <div class="roi-stat">
+              <span>Estimated Revenue:</span>
+              <strong id="resRevenue" class="text-cyan">$30,000</strong>
+            </div>
+            <div class="roi-stat highlight">
+              <span>Net ROI:</span>
+              <strong id="resROI" class="text-emerald">500%</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
   </div>
 
-  <!-- CREATE RULE MODAL -->
-  <div id="rule-modal" class="modal-backdrop">
-    <div class="modal-card">
-      <h3>Create Automation Workflow Rule</h3>
-      <form onsubmit="saveRule(event)">
-        <div class="form-group" style="margin-top:15px;">
-          <label>Rule Name</label>
-          <input type="text" id="modal-rule-name" required placeholder="e.g. SMS Abandonment Follow-up" />
-        </div>
-        <div class="form-group" style="margin-top:12px;">
-          <label>Trigger Event</label>
-          <input type="text" id="modal-rule-trigger" required placeholder="e.g. Lead Status set to Review" />
-        </div>
-        <div class="form-group" style="margin-top:12px;">
-          <label>Automated Action</label>
-          <input type="text" id="modal-rule-action" required placeholder="e.g. Send SMS & Schedule Call" />
-        </div>
-        <div class="modal-actions">
-          <button type="button" onclick="closeRuleModal()" class="secondary-btn">Cancel</button>
-          <button type="submit" class="primary-btn">Create Rule</button>
-        </div>
-      </form>
+  <!-- MODAL FOR EDITING / ADDING DATA -->
+  <div class="modal" id="genericModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Modal Title</h3>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Dynamic Form Fields -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-primary" id="modalSaveBtn">Save Changes</button>
+      </div>
     </div>
   </div>
 
