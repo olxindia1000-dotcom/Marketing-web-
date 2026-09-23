@@ -1,25 +1,21 @@
 // TAB SWITCHING LOGIC
 document.querySelectorAll('.nav-btn').forEach(btn => {
   btn.addEventListener('click', () => {
+    // Remove active state from all buttons and tabs
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     
+    // Add active state to clicked button and targeted tab
     btn.classList.add('active');
     const tabId = btn.getAttribute('data-tab');
     document.getElementById(tabId).classList.add('active');
+    
+    // Update Page Header Title
     document.getElementById('pageTitle').innerText = btn.querySelector('span').innerText;
   });
 });
 
-// EDIT VALUES FUNCTION
-function editVal(id) {
-  const newVal = prompt("નવી વેલ્યુ લખો:");
-  if (newVal) {
-    document.getElementById(id).innerText = newVal;
-  }
-}
-
-// BACKGROUND CANVAS ANIMATION
+// CANVAS BACKGROUND ANIMATION
 const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
 let points = [];
@@ -31,6 +27,7 @@ function resizeCanvas() {
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 
+// Create floating particles
 for (let i = 0; i < 35; i++) {
   points.push({
     x: Math.random() * canvas.width,
