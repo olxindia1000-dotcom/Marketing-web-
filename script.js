@@ -1,29 +1,48 @@
-document.addEventListener('DOMContentLoaded', () => {
-  
-  // Toggle switches on Figma Inspector Popup
-  const toggleLeft = document.getElementById('toggleLeftIcon');
-  const toggleRight = document.getElementById('toggleRightIcon');
+// Tab Switching System
+document.querySelectorAll('.nav-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    // Remove active class from all buttons and tabs
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
 
-  const leftIcons = document.querySelectorAll('.left-ic');
-  const rightIcons = document.querySelectorAll('.right-ic');
+    // Activate clicked button
+    button.classList.add('active');
 
-  if(toggleLeft) {
-    toggleLeft.addEventListener('click', () => {
-      toggleLeft.classList.toggle('active');
-      leftIcons.forEach(icon => {
-        icon.style.display = toggleLeft.classList.contains('active') ? 'inline' : 'none';
-      });
-    });
-  }
+    // Get tab ID and activate tab
+    const tabId = button.getAttribute('data-tab');
+    document.getElementById(`tab-${tabId}`).classList.add('active');
 
-  if(toggleRight) {
-    toggleRight.addEventListener('click', () => {
-      toggleRight.classList.toggle('active');
-      rightIcons.forEach(icon => {
-        icon.style.display = toggleRight.classList.contains('active') ? 'inline' : 'none';
-      });
-    });
-  }
-
-  console.log('UI Component Library Loaded Successfully!');
+    // Update Header Title
+    const titles = {
+      analytics: 'Analytics Dashboard',
+      sales: 'Sales Telemetry',
+      leads: 'Lead Pipeline',
+      automation: 'Marketing Automation',
+      calculator: 'ROI Calculator'
+    };
+    document.getElementById('page-title').innerText = titles[tabId];
+  });
 });
+
+// Real-Time ROI Calculation Logic
+function calculateROI() {
+  const spend = parseFloat(document.getElementById('adSpend').value) || 0;
+  const cpl = parseFloat(document.getElementById('cpl').value) || 1;
+  const closeRate = parseFloat(document.getElementById('closeRate').value) || 0;
+  const custValue = parseFloat(document.getElementById('custValue').value) || 0;
+
+  // Formulas
+  const leads = Math.floor(spend / cpl);
+  const deals = Math.floor(leads * (closeRate / 100));
+  const revenue = deals * custValue;
+  const roi = spend > 0 ? (((revenue - spend) / spend) * 100).toFixed(0) : 0;
+
+  // Render Updates
+  document.getElementById('resLeads').innerText = leads.toLocaleString('en-IN');
+  document.getElementById('resDeals').innerText = deals.toLocaleString('en-IN');
+  document.getElementById('resRevenue').innerText = '₹' + revenue.toLocaleString('en-IN');
+  document.getElementById('resROI').innerText = roi + '%';
+}
+
+// Initial calculation load
+window.onload = calculateROI;
