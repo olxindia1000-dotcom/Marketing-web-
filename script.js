@@ -1,4 +1,4 @@
-// --- DATA STORES ---
+// --- INITIAL DATA STORES ---
 let metricsData = {
   traffic: { val: "312,450", trend: "+28.4% ↑" },
   session: { val: "5m 14s", trend: "+15.2% ↑" },
@@ -21,7 +21,7 @@ let workflowsData = [
   { id: 2, title: "Lead Scoring Bot", trigger: "Form Submitted", action: "Calculate Score & Tag" }
 ];
 
-// --- TAB NAVIGATION ---
+// --- TAB SWITCHING ---
 document.querySelectorAll('.nav-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -31,12 +31,11 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
     const tabId = btn.getAttribute('data-tab');
     document.getElementById(tabId).classList.add('active');
 
-    // Update Header Text
     document.getElementById('pageTitle').innerText = btn.querySelector('span').innerText;
   });
 });
 
-// --- RENDER FUNCTIONS ---
+// --- RENDERERS ---
 function renderSalesTable() {
   const tbody = document.getElementById('salesTableBody');
   tbody.innerHTML = salesData.map(item => `
@@ -86,7 +85,12 @@ function renderChart() {
   `).join('');
 }
 
-// --- EDIT METRIC MODAL ---
+function randomizeTrafficData() {
+  renderChart();
+  logTerminal("GRAPH: Telemetry chart data points refreshed.");
+}
+
+// --- MODAL FUNCTIONS ---
 function openEditMetricModal(key) {
   const modal = document.getElementById('genericModal');
   document.getElementById('modalTitle').innerText = "Edit Metric Parameter";
@@ -96,7 +100,7 @@ function openEditMetricModal(key) {
       <input type="text" id="inputVal" value="${metricsData[key].val}">
     </div>
     <div class="form-group">
-      <label>Trend Percentage Indicator</label>
+      <label>Trend Indicator</label>
       <input type="text" id="inputTrend" value="${metricsData[key].trend}">
     </div>
   `;
@@ -116,7 +120,7 @@ function closeModal() {
   document.getElementById('genericModal').classList.remove('active');
 }
 
-// --- TERMINAL LOGGING ---
+// --- TERMINAL & TESTS ---
 function logTerminal(msg) {
   const terminal = document.getElementById('terminalLogs');
   const time = new Date().toLocaleTimeString();
@@ -129,13 +133,13 @@ function clearLogs() {
 }
 
 function testWorkflow(name) {
-  logTerminal(`INITIATING: Automated Test Trigger for "${name}"...`);
-  setTimeout(() => logTerminal(`SUCCESS: Payload Executed Successfully.`), 800);
+  logTerminal(`INITIATING: Test trigger for "${name}"...`);
+  setTimeout(() => logTerminal(`SUCCESS: Automation task completed.`), 800);
 }
 
 function runGlobalTest() {
-  logTerminal(`SYSTEM STRESS TEST: Verifying network throughput & automations...`);
-  setTimeout(() => logTerminal(`ALL SYSTEMS OPERATIONAL (100% Health)`), 1000);
+  logTerminal(`SYSTEM STRESS TEST: Checking all system nodes...`);
+  setTimeout(() => logTerminal(`ALL SYSTEMS OPERATIONAL (100% Status)`), 1000);
 }
 
 // --- ROI CALCULATOR ---
@@ -209,7 +213,7 @@ function animateCanvas() {
 }
 animateCanvas();
 
-// INITIAL RENDERS
+// INITIAL SETUP
 renderSalesTable();
 renderLeadsTable();
 renderWorkflows();
