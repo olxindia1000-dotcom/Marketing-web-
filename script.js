@@ -1,217 +1,216 @@
-// --- STATE MANAGEMENT ---
-let leadsData = [
-  { id: 1, name: "Rajesh Sharma", channel: "Google Search Ads", status: "New Lead", value: 65000 },
-  { id: 2, name: "Priya Patel", channel: "Meta Funnel", status: "In Review", value: 120000 },
-  { id: 3, name: "Anil Mehta", channel: "Organic SEO", status: "Won", value: 240000 }
+// --- DATA STORES ---
+let metricsData = {
+  traffic: { val: "312,450", trend: "+28.4% ↑" },
+  session: { val: "5m 14s", trend: "+15.2% ↑" },
+  bounce: { val: "24.1%", trend: "-6.8% ↓" },
+  conversions: { val: "14,820", trend: "+32.1% ↑" }
+};
+
+let salesData = [
+  { id: 1, client: "Apex Tech Labs", amount: "$12,400", status: "Completed", date: "2026-09-20" },
+  { id: 2, client: "Nexus Media", amount: "$8,150", status: "Pending", date: "2026-09-22" }
 ];
 
-let ruleCount = 2;
+let leadsData = [
+  { id: 1, name: "Aarav Sharma", email: "aarav@tech.in", source: "Google Ads", stage: "Qualified" },
+  { id: 2, name: "Priya Patel", email: "priya@design.com", source: "LinkedIn", stage: "Proposal" }
+];
+
+let workflowsData = [
+  { id: 1, title: "WhatsApp Instant Nurture", trigger: "On Lead Added", action: "Send WhatsApp Intro" },
+  { id: 2, title: "Lead Scoring Bot", trigger: "Form Submitted", action: "Calculate Score & Tag" }
+];
 
 // --- TAB NAVIGATION ---
-function switchTab(tabId, element) {
-  document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-  document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    
+    btn.classList.add('active');
+    const tabId = btn.getAttribute('data-tab');
+    document.getElementById(tabId).classList.add('active');
 
-  element.classList.add('active');
-  document.getElementById('tab-' + tabId).classList.add('active');
+    // Update Header Text
+    document.getElementById('pageTitle').innerText = btn.querySelector('span').innerText;
+  });
+});
 
-  const headers = {
-    analytics: { title: 'Analytics Telemetry', desc: 'Real-time digital growth & performance metric dashboard' },
-    sales: { title: 'Sales Operations', desc: 'Track deals, closed revenue, and average contract performance' },
-    leads: { title: 'Leads Pipeline Tracker', desc: 'Manage inbound opportunities and lead conversion stages' },
-    automation: { title: 'Marketing Automation', desc: 'Manage automated workflow rules and system execution triggers' },
-    calculator: { title: 'Growth & ROI Calculator', desc: 'Simulate ad spend returns and revenue projections' }
+// --- RENDER FUNCTIONS ---
+function renderSalesTable() {
+  const tbody = document.getElementById('salesTableBody');
+  tbody.innerHTML = salesData.map(item => `
+    <tr>
+      <td><strong>${item.client}</strong></td>
+      <td>${item.amount}</td>
+      <td><span class="status-badge">${item.status}</span></td>
+      <td>${item.date}</td>
+      <td><button class="btn-edit" onclick="deleteSale(${item.id})">Delete</button></td>
+    </tr>
+  `).join('');
+}
+
+function renderLeadsTable() {
+  const tbody = document.getElementById('leadsTableBody');
+  tbody.innerHTML = leadsData.map(item => `
+    <tr>
+      <td><strong>${item.name}</strong></td>
+      <td>${item.email}</td>
+      <td>${item.source}</td>
+      <td>${item.stage}</td>
+      <td><button class="btn-edit" onclick="deleteLead(${item.id})">Delete</button></td>
+    </tr>
+  `).join('');
+}
+
+function renderWorkflows() {
+  const container = document.getElementById('workflowList');
+  container.innerHTML = workflowsData.map(wf => `
+    <div class="content-card" style="margin-bottom:12px;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <h4>${wf.title}</h4>
+          <p style="font-size:12px; color:#64748b;">Trigger: ${wf.trigger} | Action: ${wf.action}</p>
+        </div>
+        <button class="btn btn-primary" onclick="testWorkflow('${wf.title}')">▶ Test Work</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderChart() {
+  const container = document.getElementById('barChart');
+  const values = [40, 75, 55, 90, 65, 85, 100];
+  container.innerHTML = values.map(v => `
+    <div class="chart-bar" style="height: ${v}%;"></div>
+  `).join('');
+}
+
+// --- EDIT METRIC MODAL ---
+function openEditMetricModal(key) {
+  const modal = document.getElementById('genericModal');
+  document.getElementById('modalTitle').innerText = "Edit Metric Parameter";
+  document.getElementById('modalBody').innerHTML = `
+    <div class="form-group">
+      <label>New Metric Value</label>
+      <input type="text" id="inputVal" value="${metricsData[key].val}">
+    </div>
+    <div class="form-group">
+      <label>Trend Percentage Indicator</label>
+      <input type="text" id="inputTrend" value="${metricsData[key].trend}">
+    </div>
+  `;
+  
+  document.getElementById('modalSaveBtn').onclick = () => {
+    metricsData[key].val = document.getElementById('inputVal').value;
+    metricsData[key].trend = document.getElementById('inputTrend').value;
+    document.getElementById(`val-${key}`).innerText = metricsData[key].val;
+    document.getElementById(`trend-${key}`).innerText = metricsData[key].trend;
+    closeModal();
   };
 
-  document.getElementById('title-text').innerText = headers[tabId].title;
-  document.getElementById('title-desc').innerText = headers[tabId].desc;
+  modal.classList.add('active');
 }
 
-// --- LEADS MANAGEMENT ---
-function renderLeads(data = leadsData) {
-  const tbody = document.getElementById('leads-table-body');
-  tbody.innerHTML = '';
-
-  data.forEach(lead => {
-    const badgeClass = lead.status === 'New Lead' ? 'new' : lead.status === 'In Review' ? 'review' : 'closed';
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td><strong>${lead.name}</strong></td>
-      <td>${lead.channel}</td>
-      <td><span class="status-badge ${badgeClass}">${lead.status}</span></td>
-      <td>₹${lead.value.toLocaleString('en-IN')}</td>
-      <td><button onclick="deleteLead(${lead.id})" class="text-btn" style="color:#ef4444;">Delete</button></td>
-    `;
-    tbody.appendChild(row);
-  });
-
-  document.getElementById('lead-count-badge').innerText = `${data.length} Total Leads`;
+function closeModal() {
+  document.getElementById('genericModal').classList.remove('active');
 }
 
-function searchLeads() {
-  const query = document.getElementById('lead-search').value.toLowerCase();
-  const filtered = leadsData.filter(l => 
-    l.name.toLowerCase().includes(query) || l.channel.toLowerCase().includes(query)
-  );
-  renderLeads(filtered);
-}
-
-function openLeadModal() { document.getElementById('lead-modal').classList.add('show'); }
-function closeLeadModal() { document.getElementById('lead-modal').classList.remove('show'); }
-
-function saveLead(e) {
-  e.preventDefault();
-  const name = document.getElementById('modal-lead-name').value;
-  const channel = document.getElementById('modal-lead-channel').value;
-  const value = parseFloat(document.getElementById('modal-lead-value').value) || 0;
-  const status = document.getElementById('modal-lead-status').value;
-
-  const newLead = { id: Date.now(), name, channel, status, value };
-  leadsData.push(newLead);
-  renderLeads();
-  closeLeadModal();
-
-  // Log automation trigger
-  addLog(`[System ${getCurrentTime()}] Automation triggered: Lead Welcome Workflow queued for ${name}`);
-  e.target.reset();
-}
-
-function deleteLead(id) {
-  leadsData = leadsData.filter(l => l.id !== id);
-  renderLeads();
-}
-
-// --- SALES FILTER ---
-function filterSales(period, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-
-  const rev = document.getElementById('sales-revenue');
-  const deals = document.getElementById('sales-deals');
-  const acv = document.getElementById('sales-acv');
-
-  if (period === 'month') {
-    rev.innerText = '₹18,40,000';
-    deals.innerText = '62';
-    acv.innerText = '₹29,670';
-  } else if (period === 'week') {
-    rev.innerText = '₹4,80,000';
-    deals.innerText = '16';
-    acv.innerText = '₹30,000';
-  } else {
-    rev.innerText = '₹48,90,000';
-    deals.innerText = '186';
-    acv.innerText = '₹26,290';
-  }
-}
-
-// --- AUTOMATION ENGINE ---
-function toggleWorkflow(ruleName, element) {
-  const statusText = element.checked ? "ACTIVATED" : "DEACTIVATED";
-  addLog(`[System ${getCurrentTime()}] Workflow Rule "${ruleName}" has been ${statusText}`);
-}
-
-function runAutomationTest(ruleName) {
-  addLog(`[System ${getCurrentTime()}] Executing test run for "${ruleName}"...`);
-  setTimeout(() => {
-    addLog(`[System ${getCurrentTime()}] SUCCESS: "${ruleName}" executed successfully.`);
-  }, 1000);
-}
-
-function openRuleModal() { document.getElementById('rule-modal').classList.add('show'); }
-function closeRuleModal() { document.getElementById('rule-modal').classList.remove('show'); }
-
-function saveRule(e) {
-  e.preventDefault();
-  ruleCount++;
-  const name = document.getElementById('modal-rule-name').value;
-  const trigger = document.getElementById('modal-rule-trigger').value;
-  const action = document.getElementById('modal-rule-action').value;
-
-  const grid = document.getElementById('automation-rules-grid');
-  const card = document.createElement('div');
-  card.className = 'card';
-  card.innerHTML = `
-    <div class="card-header-flex">
-      <span class="status-badge new">WORKFLOW #${ruleCount}</span>
-      <label class="switch">
-        <input type="checkbox" checked onchange="toggleWorkflow('${name}', this)">
-        <span class="slider round"></span>
-      </label>
-    </div>
-    <h3 style="margin-top:15px;">${name}</h3>
-    <p style="color:var(--text-muted); font-size:0.85rem; margin-top:8px;">
-      <strong>Trigger:</strong> ${trigger}<br>
-      <strong>Action:</strong> ${action}
-    </p>
-    <button onclick="runAutomationTest('${name}')" class="secondary-btn" style="margin-top:15px; width:100%;">
-      ▶ Run Test Trigger
-    </button>
-  `;
-  grid.appendChild(card);
-  closeRuleModal();
-  addLog(`[System ${getCurrentTime()}] Created new custom workflow: "${name}"`);
-  e.target.reset();
+// --- TERMINAL LOGGING ---
+function logTerminal(msg) {
+  const terminal = document.getElementById('terminalLogs');
+  const time = new Date().toLocaleTimeString();
+  terminal.innerHTML += `<div>[${time}] ${msg}</div>`;
+  terminal.scrollTop = terminal.scrollHeight;
 }
 
 function clearLogs() {
-  document.getElementById('terminal-logs').innerHTML = '';
+  document.getElementById('terminalLogs').innerHTML = '';
 }
 
-function addLog(msg) {
-  const logBox = document.getElementById('terminal-logs');
-  const entry = document.createElement('div');
-  entry.className = 'log-entry';
-  entry.innerText = msg;
-  logBox.prepend(entry);
+function testWorkflow(name) {
+  logTerminal(`INITIATING: Automated Test Trigger for "${name}"...`);
+  setTimeout(() => logTerminal(`SUCCESS: Payload Executed Successfully.`), 800);
 }
 
-function getCurrentTime() {
-  return new Date().toTimeString().split(' ')[0];
+function runGlobalTest() {
+  logTerminal(`SYSTEM STRESS TEST: Verifying network throughput & automations...`);
+  setTimeout(() => logTerminal(`ALL SYSTEMS OPERATIONAL (100% Health)`), 1000);
 }
 
-// --- ANALYTICS FILTER ---
-function updateAnalyticsChart() {
-  const filter = document.getElementById('analytics-filter').value;
-  const graph = document.getElementById('traffic-graph');
-  
-  if (filter === '3m') {
-    graph.innerHTML = `
-      <div class="graph-bar" style="height: 60%;"><span>Mar</span><div class="bar-val">180k</div></div>
-      <div class="graph-bar" style="height: 80%;"><span>Apr</span><div class="bar-val">240k</div></div>
-      <div class="graph-bar" style="height: 100%;"><span>May</span><div class="bar-val">284k</div></div>
-    `;
-  } else {
-    graph.innerHTML = `
-      <div class="graph-bar" style="height: 40%;"><span>Jan</span><div class="bar-val">120k</div></div>
-      <div class="graph-bar" style="height: 60%;"><span>Feb</span><div class="bar-val">180k</div></div>
-      <div class="graph-bar" style="height: 75%;"><span>Mar</span><div class="bar-val">210k</div></div>
-      <div class="graph-bar" style="height: 90%;"><span>Apr</span><div class="bar-val">250k</div></div>
-      <div class="graph-bar" style="height: 100%;"><span>May</span><div class="bar-val">284k</div></div>
-    `;
-  }
-}
-
-// --- CALCULATOR ---
+// --- ROI CALCULATOR ---
 function calculateROI() {
-  const spend = parseFloat(document.getElementById('spend').value) || 0;
-  const cpl = parseFloat(document.getElementById('cpl').value) || 1;
-  const closeRate = parseFloat(document.getElementById('closeRate').value) || 0;
-  const custValue = parseFloat(document.getElementById('custValue').value) || 0;
+  const spend = parseFloat(document.getElementById('roiSpend').value) || 0;
+  const cpl = parseFloat(document.getElementById('roiCpl').value) || 1;
+  const conv = parseFloat(document.getElementById('roiConv').value) || 0;
+  const deal = parseFloat(document.getElementById('roiDeal').value) || 0;
 
   const leads = Math.floor(spend / cpl);
-  const deals = Math.floor(leads * (closeRate / 100));
-  const revenue = deals * custValue;
+  const closedDeals = Math.floor(leads * (conv / 100));
+  const revenue = closedDeals * deal;
   const roi = spend > 0 ? (((revenue - spend) / spend) * 100).toFixed(0) : 0;
 
-  document.getElementById('resLeads').innerText = leads.toLocaleString('en-IN');
-  document.getElementById('resDeals').innerText = deals.toLocaleString('en-IN');
-  document.getElementById('resRevenue').innerText = '₹' + revenue.toLocaleString('en-IN');
-  document.getElementById('resROI').innerText = roi + '%';
+  document.getElementById('resLeads').innerText = leads;
+  document.getElementById('resDeals').innerText = closedDeals;
+  document.getElementById('resRevenue').innerText = `$${revenue.toLocaleString()}`;
+  document.getElementById('resROI').innerText = `${roi}%`;
 }
 
-// --- INITIAL LOAD ---
-window.onload = function() {
-  renderLeads();
-  calculateROI();
-};
+// --- BACKGROUND CANVAS ANIMATION ---
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+let points = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+for (let i = 0; i < 40; i++) {
+  points.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.8,
+    vy: (Math.random() - 0.5) * 0.8
+  });
+}
+
+function animateCanvas() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = 'rgba(0, 242, 254, 0.4)';
+  ctx.strokeStyle = 'rgba(0, 242, 254, 0.08)';
+
+  points.forEach((p, i) => {
+    p.x += p.vx;
+    p.y += p.vy;
+
+    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+    ctx.fill();
+
+    for (let j = i + 1; j < points.length; j++) {
+      const p2 = points[j];
+      const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+      if (dist < 120) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+      }
+    }
+  });
+
+  requestAnimationFrame(animateCanvas);
+}
+animateCanvas();
+
+// INITIAL RENDERS
+renderSalesTable();
+renderLeadsTable();
+renderWorkflows();
+renderChart();
