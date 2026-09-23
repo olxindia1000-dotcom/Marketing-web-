@@ -1,92 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="gu">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Growth Digital - UI Component Library</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figma Component Library Showcase</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="library-container">
-    <header class="header">
-      <div class="badge">🧩 Design System</div>
-      <h1>Well Organized Component Library</h1>
-      <p>Modular UI molecules & elements designed by Vedant & Divy for modern web apps.</p>
-    </header>
+  <div class="canvas-bg"></div>
 
-    <div class="components-grid">
-      
-      <!-- Card 1: Avatars -->
-      <div class="component-card">
-        <span class="category">Molecules</span>
-        <h3>Avatars</h3>
-        <div class="preview-box avatars-preview">
-          <div class="avatar">👤</div>
-          <div class="avatar">👨‍💻</div>
-          <div class="avatar">👩‍💼</div>
-          <div class="avatar active">🚀</div>
+  <main class="library-wrapper">
+    
+    <!-- Floating Inspector Card -->
+    <div class="figma-inspector-popup">
+      <div class="popup-header">
+        <span class="dot"></span>
+        <span class="popup-title">Properties from this file</span>
+      </div>
+      <div class="popup-row">
+        <label>Type</label>
+        <select class="figma-select">
+          <option>Filled</option>
+          <option>Outlined</option>
+        </select>
+      </div>
+      <div class="popup-row">
+        <label>Color</label>
+        <select class="figma-select">
+          <option>Primary</option>
+          <option>Secondary</option>
+        </select>
+      </div>
+      <div class="popup-row toggle-row">
+        <label>Left Icon</label>
+        <div class="figma-toggle active" id="toggleLeftIcon">
+          <div class="toggle-circle"></div>
+        </div>
+      </div>
+      <div class="popup-row toggle-row">
+        <label>Right Icon</label>
+        <div class="figma-toggle active" id="toggleRightIcon">
+          <div class="toggle-circle"></div>
+        </div>
+      </div>
+      <div class="popup-footer">
+        <span class="chip-tag">Chip</span>
+      </div>
+    </div>
+
+    <!-- Main Components Grid -->
+    <div class="masonry-grid">
+
+      <!-- Avatars -->
+      <div class="ui-card">
+        <span class="card-category">Molecules</span>
+        <h2 class="card-title">Avatars</h2>
+        <div class="avatars-grid">
+          <div class="avatar-row">
+            <div class="avatar sm">👤</div>
+            <div class="avatar sm">👨‍💻</div>
+            <div class="avatar sm">👩‍💼</div>
+            <div class="avatar sm">🚀</div>
+          </div>
+          <div class="avatar-row">
+            <div class="avatar md">😎</div>
+            <div class="avatar md">🎨</div>
+            <div class="avatar md active-ring">🔥</div>
+          </div>
         </div>
       </div>
 
-      <!-- Card 2: Chips / Tags -->
-      <div class="component-card">
-        <span class="category">Molecules</span>
-        <h3>Tag / Chip</h3>
-        <div class="preview-box chips-preview">
-          <span class="chip primary">Filled</span>
-          <span class="chip success">Success</span>
-          <span class="chip warning">Pending</span>
+      <!-- Chips -->
+      <div class="ui-card">
+        <span class="card-category">Molecules</span>
+        <h2 class="card-title">Tag / Chip</h2>
+        <div class="chips-grid">
+          <div class="chip-row">
+            <span class="chip-item dark">Tag</span>
+            <span class="chip-item purple">Tag</span>
+            <span class="chip-item blue">Tag</span>
+            <span class="chip-item green">Tag</span>
+          </div>
+          <div class="chip-row">
+            <span class="chip-item light-purple">Tag ✕</span>
+            <span class="chip-item light-blue">Tag ✕</span>
+            <span class="chip-item light-green">Tag ✕</span>
+          </div>
         </div>
       </div>
 
-      <!-- Card 3: Selection Items -->
-      <div class="component-card">
-        <span class="category">Molecules</span>
-        <h3>Selection Items</h3>
-        <div class="preview-box selection-preview">
-          <label><input type="checkbox" checked /> Checkbox</label>
-          <label><input type="radio" checked /> Radio Button</label>
-          <label class="toggle-switch">
-            <input type="checkbox" checked />
-            <span class="slider"></span>
-          </label>
+      <!-- Selection Items -->
+      <div class="ui-card">
+        <span class="card-category">Molecules</span>
+        <h2 class="card-title">Selection Items</h2>
+        <div class="selection-columns">
+          <div class="sel-col">
+            <h4>Checkbox</h4>
+            <label><input type="checkbox"> Label</label>
+            <label><input type="checkbox" checked> Label</label>
+          </div>
+          <div class="sel-col">
+            <h4>Radio</h4>
+            <label><input type="radio" name="r1"> Label</label>
+            <label><input type="radio" name="r1" checked> Label</label>
+          </div>
+          <div class="sel-col">
+            <h4>Toggle</h4>
+            <input type="checkbox" class="interactive-toggle" checked>
+          </div>
         </div>
       </div>
 
-      <!-- Card 4: Date Picker -->
-      <div class="component-card">
-        <span class="category">Molecules</span>
-        <h3>Date Picker</h3>
-        <div class="preview-box date-preview">
-          <input type="date" value="2026-09-23" />
+      <!-- Input Field -->
+      <div class="ui-card">
+        <span class="card-category">Molecules</span>
+        <h2 class="card-title">Input Field</h2>
+        <div class="inputs-stack">
+          <div class="input-group">
+            <label>Title</label>
+            <div class="input-box">
+              <span class="icon left-ic">🔍</span>
+              <input type="text" placeholder="Search..." />
+              <span class="icon right-ic">ⓘ</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Card 5: Tooltips -->
-      <div class="component-card">
-        <span class="category">Molecules</span>
-        <h3>Tooltips</h3>
-        <div class="preview-box tooltip-preview">
-          <button class="tooltip-btn" data-tooltip="This is a primary tooltip!">Hover Me</button>
-        </div>
-      </div>
-
-      <!-- Card 6: Input Field -->
-      <div class="component-card">
-        <span class="category">Molecules</span>
-        <h3>Input Field</h3>
-        <div class="preview-box input-preview">
-          <input type="text" placeholder="Enter your text here..." />
+      <!-- Tooltips -->
+      <div class="ui-card">
+        <span class="card-category">Molecules</span>
+        <h2 class="card-title">Tooltips</h2>
+        <div class="tooltips-stack">
+          <div class="tooltip-box dark">I am a tooltip</div>
+          <div class="tooltip-box green">I am a tooltip</div>
         </div>
       </div>
 
     </div>
 
-    <div class="footer-badge">
-      <span>🧩 Well Organized Component Library</span>
+    <!-- Bottom Banner -->
+    <div class="bottom-banner-badge">
+      <div class="puzzle-icon">🧩</div>
+      <h2>Well Organized Component Library</h2>
     </div>
-  </div>
 
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
