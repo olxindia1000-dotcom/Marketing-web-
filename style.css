@@ -1,4 +1,4 @@
-/* Light Blue & Electric Yellow Premium Theme */
+/* Upgraded Light Blue & Electric Yellow Theme */
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +13,7 @@ body {
   overflow-x: hidden;
 }
 
-/* 3D Canvas Background */
+/* 3D WebGL Canvas Background */
 #bg-canvas {
   position: fixed;
   top: 0;
@@ -24,7 +24,7 @@ body {
   pointer-events: none;
 }
 
-/* Light Glass Navbar */
+/* Glassmorphism Navigation Bar */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -57,14 +57,14 @@ body {
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 22px;
+  gap: 20px;
 }
 
 .nav-links a {
   color: #334155;
   text-decoration: none;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   transition: all 0.3s ease;
 }
 
@@ -97,7 +97,7 @@ body {
 }
 
 .hero-content {
-  max-width: 750px;
+  max-width: 780px;
 }
 
 .badge {
@@ -113,7 +113,7 @@ body {
 }
 
 .hero h1 {
-  font-size: 3.5rem;
+  font-size: 3.4rem;
   line-height: 1.15;
   font-weight: 900;
   margin-bottom: 20px;
@@ -193,7 +193,7 @@ button, .btn-primary, .btn-secondary {
 
 .section-title {
   text-align: center;
-  font-size: 2.4rem;
+  font-size: 2.3rem;
   font-weight: 900;
   color: #0f172a;
   margin-bottom: 8px;
@@ -206,27 +206,66 @@ button, .btn-primary, .btn-secondary {
   margin-bottom: 45px;
 }
 
-/* Cards Grid */
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+/* Touch & Drag Swipe Layout */
+.swipe-container {
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 15px;
+  cursor: grab;
+}
+
+.swipe-container:active {
+  cursor: grabbing;
+}
+
+.swipe-container::-webkit-scrollbar {
+  display: none;
+}
+
+.swipe-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.swipe-track {
+  display: flex;
   gap: 25px;
 }
 
+.swipe-track .card {
+  flex: 0 0 85%;
+  scroll-snap-align: center;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .swipe-track {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  .swipe-track .card {
+    flex: initial;
+  }
+}
+
+/* Cards Grid */
 .card {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   border: 1px solid #bae6fd;
   border-radius: 20px;
   padding: 30px;
   backdrop-filter: blur(8px);
   box-shadow: 0 4px 15px rgba(2, 132, 199, 0.04);
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px) scale(1.02);
   border-color: #fde047;
-  box-shadow: 0 12px 25px rgba(234, 179, 8, 0.2);
+  box-shadow: 0 14px 30px rgba(234, 179, 8, 0.22);
 }
 
 .card-icon {
@@ -256,6 +295,7 @@ button, .btn-primary, .btn-secondary {
   border-radius: 12px;
   font-weight: 800;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .card-btn:hover {
@@ -264,7 +304,29 @@ button, .btn-primary, .btn-secondary {
   border-color: #0284c7;
 }
 
-/* Data Analytics Metrics & Charts */
+/* Swipe Indicator Dots */
+.swipe-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.swipe-indicators .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #bae6fd;
+  transition: all 0.3s ease;
+}
+
+.swipe-indicators .dot.active {
+  background: #0284c7;
+  width: 24px;
+  border-radius: 12px;
+}
+
+/* Data & Analytics Telemetry */
 .metrics-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -338,7 +400,7 @@ button, .btn-primary, .btn-secondary {
   font-weight: 700;
 }
 
-/* CTA Banner */
+/* Call to Action Banner */
 .cta-banner {
   margin: 40px 5% 80px;
   background: linear-gradient(135deg, #0284c7, #0369a1);
@@ -382,6 +444,6 @@ button, .btn-primary, .btn-secondary {
 }
 
 @media (max-width: 768px) {
-  .hero h1 { font-size: 2.4rem; }
+  .hero h1 { font-size: 2.3rem; }
   .nav-links { display: none; }
 }
