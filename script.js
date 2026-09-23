@@ -1,13 +1,58 @@
-// --- Interactive Deal Alert System ---
+// --- Deal Alert System ---
 function dealAlert(serviceName) {
-  alert(`For exclusive deals on "${serviceName}", please call Vedant & Divy's growth team directly at: +91 9316528918`);
+  alert(`For exclusive deals on "${serviceName}", please call Vedant & Divy's team directly at: +91 9316528918`);
 }
 
 function scrollToSection(id) {
   document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
 }
 
-// --- High-Level 3D Torus-Knot & Particle Halo Scene (Three.js) ---
+// --- Dynamic Mouse & Touch Swipe Controller ---
+document.addEventListener('DOMContentLoaded', () => {
+  const containers = document.querySelectorAll('.swipe-container');
+
+  containers.forEach((container) => {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    const dots = container.querySelectorAll('.dot');
+
+    // Mouse Drag Events
+    container.addEventListener('mousedown', (e) => {
+      isDown = true;
+      startX = e.pageX - container.offsetLeft;
+      scrollLeft = container.scrollLeft;
+    });
+
+    container.addEventListener('mouseleave', () => { isDown = false; });
+    container.addEventListener('mouseup', () => { isDown = false; });
+
+    container.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - container.offsetLeft;
+      const walk = (x - startX) * 1.8;
+      container.scrollLeft = scrollLeft - walk;
+    });
+
+    // Dynamic Dot Indicator Sync
+    container.addEventListener('scroll', () => {
+      const card = container.querySelector('.card');
+      if (!card) return;
+      const cardWidth = card.offsetWidth + 25;
+      const activeIndex = Math.min(
+        dots.length - 1,
+        Math.max(0, Math.round(container.scrollLeft / cardWidth))
+      );
+
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === activeIndex);
+      });
+    });
+  });
+});
+
+// --- High-Level 3D Torus-Knot & Interactive Particles (Three.js) ---
 const canvas = document.getElementById('bg-canvas');
 const scene = new THREE.Scene();
 
@@ -17,7 +62,7 @@ const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialia
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-// High-Level 3D Geometry (Torus Knot Core)
+// Interactive 3D Torus Knot Geometry
 const geometry = new THREE.TorusKnotGeometry(1.8, 0.5, 128, 32);
 
 // Dynamic Material (Light Blue Wireframe)
@@ -31,33 +76,33 @@ const shape3D = new THREE.Mesh(geometry, material);
 shape3D.position.set(3.8, 0, -2);
 scene.add(shape3D);
 
-// Electric Yellow Floating Particles
-const particlesCount = 450;
+// Electric Yellow Halo Particle Cloud
+const particlesCount = 500;
 const positions = new Float32Array(particlesCount * 3);
 
 for (let i = 0; i < particlesCount * 3; i++) {
-  positions[i] = (Math.random() - 0.5) * 18;
+  positions[i] = (Math.random() - 0.5) * 20;
 }
 
 const particleGeo = new THREE.BufferGeometry();
 particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
 const particleMat = new THREE.PointsMaterial({
-  size: 0.04,
+  size: 0.045,
   color: 0xeab308,
   transparent: true,
-  opacity: 0.7
+  opacity: 0.75
 });
 
 const particleSystem = new THREE.Points(particleGeo, particleMat);
 scene.add(particleSystem);
 
-// High-Level Lighting Setup
+// Dual Light Rig Setup
 const mainLight = new THREE.PointLight(0x0284c7, 2, 50);
 mainLight.position.set(5, 5, 5);
 scene.add(mainLight);
 
-const yellowLight = new THREE.PointLight(0xeab308, 1.5, 50);
+const yellowLight = new THREE.PointLight(0xeab308, 1.8, 50);
 yellowLight.position.set(-5, -5, 2);
 scene.add(yellowLight);
 
@@ -66,7 +111,7 @@ scene.add(ambientLight);
 
 camera.position.z = 5;
 
-// Interactive Mouse Dynamic Rotation
+// Dynamic Mouse Interactions
 let mouseX = 0;
 let mouseY = 0;
 
@@ -83,7 +128,7 @@ function animate() {
 
   const elapsedTime = clock.getElapsedTime();
 
-  // High-Level Smooth 3D Rotation
+  // Smooth Interactive 3D Rotation
   shape3D.rotation.y = elapsedTime * 0.4 + mouseX * 0.6;
   shape3D.rotation.x = elapsedTime * 0.3 + mouseY * 0.6;
 
@@ -94,7 +139,7 @@ function animate() {
 
 animate();
 
-// Responsive Window Resize
+// Window Resize Handler
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
