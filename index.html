@@ -3,253 +3,229 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Growth Digital - Enterprise Operations Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Growth Digital - Enterprise Suite</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <!-- Three.js for 3D Background Particles -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- 3D Interactive Canvas -->
-  <canvas id="bg-canvas"></canvas>
-
-  <div class="app-layout">
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar">
-      <div class="sidebar-brand">
-        <div class="brand-logo">⚡</div>
-        <div class="brand-info">
+  <!-- SIDEBAR NAVIGATION -->
+  <aside class="sidebar">
+    <div>
+      <div class="brand-box">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
           <h2>Growth<span>Digital</span></h2>
-          <span class="sub">Pro Operations Suite</span>
+          <p>Pro Operations Suite</p>
         </div>
       </div>
 
-      <nav class="nav-menu">
-        <button class="nav-btn active" data-tab="analytics">
-          <span class="icon">📊</span> Analytics
-        </button>
-        <button class="nav-btn" data-tab="sales">
-          <span class="icon">💰</span> Sales
-        </button>
-        <button class="nav-btn" data-tab="leads">
-          <span class="icon">🎯</span> Leads Pipeline
-        </button>
-        <button class="nav-btn" data-tab="automation">
-          <span class="icon">🤖</span> Automation
-        </button>
-        <button class="nav-btn" data-tab="calculator">
-          <span class="icon">🧮</span> ROI Calculator
-        </button>
-      </nav>
+      <ul class="nav-list">
+        <li class="nav-item">
+          <button class="nav-btn active" onclick="switchTab('analytics', this)">
+            <span>📊</span> Analytics
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-btn" onclick="switchTab('sales', this)">
+            <span>💰</span> Sales
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-btn" onclick="switchTab('leads', this)">
+            <span>🎯</span> Leads Pipeline
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-btn" onclick="switchTab('automation', this)">
+            <span>🤖</span> Automation
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-btn" onclick="switchTab('calculator', this)">
+            <span>🧮</span> ROI Calculator
+          </button>
+        </li>
+      </ul>
+    </div>
 
-      <div class="sidebar-footer">
-        <div class="credit-badge">
-          <span>Made with ❤️ by</span>
-          <strong>Divy &amp; Vedant</strong>
+    <div class="sidebar-footer">
+      <p>Engineered by</p>
+      <strong>Divy &amp; Vedant</strong>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="content-area">
+    <header class="top-bar">
+      <div class="page-title">
+        <h1 id="title-text">Analytics Telemetry</h1>
+        <p>Real-time digital growth &amp; performance metric dashboard</p>
+      </div>
+      <div class="live-badge">
+        <div class="dot-pulse"></div> Live System
+      </div>
+    </header>
+
+    <!-- TAB 1: ANALYTICS -->
+    <section id="tab-analytics" class="tab-pane active">
+      <div class="grid-3">
+        <div class="card">
+          <span class="card-label">Total Traffic</span>
+          <div class="card-value">284,920</div>
+          <span class="tag-trend up">+24.8% ↑</span>
+        </div>
+        <div class="card">
+          <span class="card-label">Avg. Session Duration</span>
+          <div class="card-value">4m 32s</div>
+          <span class="tag-trend up">+12.1% ↑</span>
+        </div>
+        <div class="card">
+          <span class="card-label">Bounce Rate</span>
+          <div class="card-value">28.4%</div>
+          <span class="tag-trend down">-5.2% ↓</span>
         </div>
       </div>
-    </aside>
 
-    <!-- Main Content Area -->
-    <main class="main-wrapper">
-      <header class="top-header">
-        <div>
-          <h1 id="page-title">Analytics Telemetry</h1>
-          <p class="subtitle">Live performance &amp; growth metrics platform</p>
+      <div class="card chart-container">
+        <h3>Monthly Traffic Growth</h3>
+        <div class="bar-graph">
+          <div class="graph-bar" style="height: 40%;"><span>Jan</span></div>
+          <div class="graph-bar" style="height: 60%;"><span>Feb</span></div>
+          <div class="graph-bar" style="height: 75%;"><span>Mar</span></div>
+          <div class="graph-bar" style="height: 90%;"><span>Apr</span></div>
+          <div class="graph-bar" style="height: 100%;"><span>May</span></div>
         </div>
-        <div class="header-actions">
-          <span class="live-pill"><span class="pulse"></span> Live Stream</span>
-        </div>
-      </header>
+      </div>
+    </section>
 
-      <!-- TAB 1: ANALYTICS -->
-      <section id="tab-analytics" class="tab-pane active">
-        <div class="swipe-container">
-          <div class="swipe-track">
-            <div class="card metric-card">
-              <span class="m-title">Total Visitors</span>
-              <div class="m-val">284,920</div>
-              <span class="badge pos">+24.8% ↑</span>
-            </div>
-            <div class="card metric-card">
-              <span class="m-title">Avg Session</span>
-              <div class="m-val">4m 32s</div>
-              <span class="badge pos">+12.1% ↑</span>
-            </div>
-            <div class="card metric-card">
-              <span class="m-title">Bounce Rate</span>
-              <div class="m-val">28.4%</div>
-              <span class="badge neg">-5.2% ↓</span>
-            </div>
-          </div>
-          <div class="swipe-indicators">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </div>
+    <!-- TAB 2: SALES -->
+    <section id="tab-sales" class="tab-pane">
+      <div class="grid-3">
+        <div class="card">
+          <span class="card-label">Total Revenue</span>
+          <div class="card-value">₹48,90,000</div>
+          <span class="tag-trend up">+32.4% ↑</span>
         </div>
-
-        <div class="card chart-card">
-          <h3>Traffic &amp; Conversion Telemetry</h3>
-          <div class="bar-chart">
-            <div class="bar" style="height: 45%;" data-val="14K"><span>Jan</span></div>
-            <div class="bar" style="height: 65%;" data-val="28K"><span>Feb</span></div>
-            <div class="bar" style="height: 80%;" data-val="42K"><span>Mar</span></div>
-            <div class="bar" style="height: 95%;" data-val="58K"><span>Apr</span></div>
-            <div class="bar" style="height: 100%;" data-val="74K"><span>May</span></div>
-          </div>
+        <div class="card">
+          <span class="card-label">Closed Deals</span>
+          <div class="card-value">186</div>
+          <span class="tag-trend up">+14 ↑</span>
         </div>
-      </section>
-
-      <!-- TAB 2: SALES -->
-      <section id="tab-sales" class="tab-pane">
-        <div class="swipe-container">
-          <div class="swipe-track">
-            <div class="card metric-card">
-              <span class="m-title">Total Revenue</span>
-              <div class="m-val">₹48,90,000</div>
-              <span class="badge pos">+34% ↑</span>
-            </div>
-            <div class="card metric-card">
-              <span class="m-title">Closed Deals</span>
-              <div class="m-val">186</div>
-              <span class="badge pos">+18 ↑</span>
-            </div>
-            <div class="card metric-card">
-              <span class="m-title">Avg Deal Size</span>
-              <div class="m-val">₹26,290</div>
-              <span class="badge pos">+8.4% ↑</span>
-            </div>
-          </div>
-          <div class="swipe-indicators">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </div>
+        <div class="card">
+          <span class="card-label">Avg Deal Value</span>
+          <div class="card-value">₹26,290</div>
+          <span class="tag-trend up">+8.1% ↑</span>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- TAB 3: LEADS -->
-      <section id="tab-leads" class="tab-pane">
-        <div class="card table-card">
-          <h3>Inbound Lead Tracker</h3>
-          <div class="table-responsive">
-            <table>
-              <thead>
-                <tr>
-                  <th>Client Name</th>
-                  <th>Channel</th>
-                  <th>Status</th>
-                  <th>Deal Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Rajesh Sharma</td>
-                  <td>Google Ads</td>
-                  <td><span class="status-tag new">New</span></td>
-                  <td>₹65,000</td>
-                </tr>
-                <tr>
-                  <td>Priya Patel</td>
-                  <td>Meta Funnel</td>
-                  <td><span class="status-tag progress">In Review</span></td>
-                  <td>₹1,20,000</td>
-                </tr>
-                <tr>
-                  <td>Anil Mehta</td>
-                  <td>Organic SEO</td>
-                  <td><span class="status-tag won">Closed Won</span></td>
-                  <td>₹2,40,000</td>
-                </tr>
-              </tbody>
-            </table>
+    <!-- TAB 3: LEADS -->
+    <section id="tab-leads" class="tab-pane">
+      <div class="card">
+        <h3>Inbound Leads Tracker</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Client Name</th>
+              <th>Channel</th>
+              <th>Status</th>
+              <th>Estimated Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Rajesh Sharma</td>
+              <td>Google Search Ads</td>
+              <td><span class="status-badge new">New Lead</span></td>
+              <td>₹65,000</td>
+            </tr>
+            <tr>
+              <td>Priya Patel</td>
+              <td>Meta Funnel</td>
+              <td><span class="status-badge review">In Review</span></td>
+              <td>₹1,20,000</td>
+            </tr>
+            <tr>
+              <td>Anil Mehta</td>
+              <td>Organic SEO</td>
+              <td><span class="status-badge closed">Won</span></td>
+              <td>₹2,40,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 4: AUTOMATION -->
+    <section id="tab-automation" class="tab-pane">
+      <div class="grid-3">
+        <div class="card">
+          <span style="font-size: 2rem;">💬</span>
+          <h3 style="margin-top: 10px;">WhatsApp Instant Nurture</h3>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 6px;">Automated welcome message sent immediately on lead generation.</p>
+          <span class="status-badge closed" style="display: inline-block; margin-top: 12px;">Active</span>
+        </div>
+        <div class="card">
+          <span style="font-size: 2rem;">📧</span>
+          <h3 style="margin-top: 10px;">Email Abandonment Flow</h3>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 6px;">Triggers personalized drip sequence for inactive users.</p>
+          <span class="status-badge closed" style="display: inline-block; margin-top: 12px;">Active</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: CALCULATOR -->
+    <section id="tab-calculator" class="tab-pane">
+      <div class="card">
+        <h3>Growth &amp; ROI Calculator</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;">Adjust ad budget parameters to calculate projected return on investment.</p>
+        
+        <div class="calc-grid">
+          <div class="form-group">
+            <label>Monthly Ad Spend (₹)</label>
+            <input type="number" id="spend" value="50000" oninput="calculateROI()" />
+          </div>
+          <div class="form-group">
+            <label>Cost Per Lead (CPL) (₹)</label>
+            <input type="number" id="cpl" value="250" oninput="calculateROI()" />
+          </div>
+          <div class="form-group">
+            <label>Closing Conversion Rate (%)</label>
+            <input type="number" id="closeRate" value="10" oninput="calculateROI()" />
+          </div>
+          <div class="form-group">
+            <label>Avg Customer Value (₹)</label>
+            <input type="number" id="custValue" value="20000" oninput="calculateROI()" />
           </div>
         </div>
-      </section>
 
-      <!-- TAB 4: AUTOMATION -->
-      <section id="tab-automation" class="tab-pane">
-        <div class="swipe-container">
-          <div class="swipe-track">
-            <div class="card auto-card">
-              <div class="icon-box">💬</div>
-              <h3>WhatsApp Lead Nurture</h3>
-              <p>Automated 3-step instant message sequence on form submit.</p>
-              <span class="status-pill active">Running</span>
-            </div>
-            <div class="card auto-card">
-              <div class="icon-box">📧</div>
-              <h3>Email Cart Recovery</h3>
-              <p>Triggers follow-up emails for abandoned checkout leads.</p>
-              <span class="status-pill active">Running</span>
-            </div>
-            <div class="card auto-card">
-              <div class="icon-box">🎯</div>
-              <h3>Auto-Ad Retargeting</h3>
-              <p>Automatically syncs high-value leads with Meta Custom Audience.</p>
-              <span class="status-pill active">Running</span>
-            </div>
+        <div class="results-grid">
+          <div class="res-box">
+            <span>Expected Leads</span>
+            <h3 id="resLeads">200</h3>
           </div>
-          <div class="swipe-indicators">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
+          <div class="res-box">
+            <span>Closed Deals</span>
+            <h3 id="resDeals">20</h3>
+          </div>
+          <div class="res-box active-res">
+            <span>Projected Revenue</span>
+            <h3 id="resRevenue">₹4,00,000</h3>
+          </div>
+          <div class="res-box active-res">
+            <span>Estimated ROI</span>
+            <h3 id="resROI">700%</h3>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- TAB 5: CALCULATOR -->
-      <section id="tab-calculator" class="tab-pane">
-        <div class="card calc-card">
-          <h3>Dynamic Growth &amp; ROI Calculator</h3>
-          <div class="calc-inputs">
-            <div class="input-field">
-              <label>Monthly Ad Spend (₹)</label>
-              <input type="number" id="adSpend" value="50000" oninput="runCalculator()" />
-            </div>
-            <div class="input-field">
-              <label>Cost Per Lead (CPL) (₹)</label>
-              <input type="number" id="cpl" value="200" oninput="runCalculator()" />
-            </div>
-            <div class="input-field">
-              <label>Closing Rate (%)</label>
-              <input type="number" id="closeRate" value="12" oninput="runCalculator()" />
-            </div>
-            <div class="input-field">
-              <label>Avg Customer Value (₹)</label>
-              <input type="number" id="custValue" value="20000" oninput="runCalculator()" />
-            </div>
-          </div>
-
-          <div class="calc-results">
-            <div class="res-card">
-              <span>Expected Leads</span>
-              <h4 id="resLeads">250</h4>
-            </div>
-            <div class="res-card">
-              <span>Deals Won</span>
-              <h4 id="resDeals">30</h4>
-            </div>
-            <div class="res-card highlight">
-              <span>Projected Revenue</span>
-              <h4 id="resRevenue">₹6,00,000</h4>
-            </div>
-            <div class="res-card highlight">
-              <span>Est. Return on Investment</span>
-              <h4 id="resROI">1100%</h4>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Footer Credit -->
-      <footer class="main-footer">
-        <p>Growth Digital Platform | Engineered with precision — <strong>Made by Divy and Vedant</strong></p>
-      </footer>
-    </main>
-  </div>
+    <!-- FOOTER CREDIT -->
+    <footer class="page-footer">
+      Growth Digital Platform — Crafted by <strong>Divy &amp; Vedant</strong>
+    </footer>
+  </main>
 
   <script src="script.js"></script>
 </body>
