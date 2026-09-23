@@ -3,231 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Growth Digital | High-Level 3D Marketing & Analytics Platform</title>
+  <title>Growth Digital - UI Component Library</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Three.js for Interactive 3D Canvas Scene -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
 
-  <!-- 3D Interactive WebGL Background -->
-  <canvas id="bg-canvas"></canvas>
+  <div class="library-container">
+    <header class="header">
+      <div class="badge">🧩 Design System</div>
+      <h1>Well Organized Component Library</h1>
+      <p>Modular UI molecules & elements designed by Vedant & Divy for modern web apps.</p>
+    </header>
 
-  <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="logo">Growth<span>Digital</span></div>
-    <ul class="nav-links">
-      <li><a href="#dashboards">Dashboards</a></li>
-      <li><a href="#automation">Marketing Automation</a></li>
-      <li><a href="#agency-analytics">Agency Analytics</a></li>
-      <li><a href="#performance">Performance</a></li>
-      <li><a href="#growth-suite">Growth Suite</a></li>
-    </ul>
-    <a href="tel:+919316528918" class="btn-call">📞 Call +91 9316528918</a>
-  </nav>
+    <div class="components-grid">
+      
+      <!-- Card 1: Avatars -->
+      <div class="component-card">
+        <span class="category">Molecules</span>
+        <h3>Avatars</h3>
+        <div class="preview-box avatars-preview">
+          <div class="avatar">👤</div>
+          <div class="avatar">👨‍💻</div>
+          <div class="avatar">👩‍💼</div>
+          <div class="avatar active">🚀</div>
+        </div>
+      </div>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <div class="badge">⚡ Crafted by Vedant & Divy | Next-Gen Light Blue & Electric Yellow</div>
-      <h1>Accelerate Digital Scale With <br><span class="gradient-text">Personalized Growth Engine</span></h1>
-      <p>Custom Technical & Content Dashboards, Enterprise Marketing Automation, and Real-Time Agency Analytics powered by interactive WebGL 3D intelligence.</p>
-      <div class="hero-btns">
-        <a href="tel:+919316528918" class="btn-primary">Call +91 9316528918 for Deals ↗</a>
-        <button class="btn-secondary" onclick="scrollToSection('dashboards')">Explore Platform</button>
+      <!-- Card 2: Chips / Tags -->
+      <div class="component-card">
+        <span class="category">Molecules</span>
+        <h3>Tag / Chip</h3>
+        <div class="preview-box chips-preview">
+          <span class="chip primary">Filled</span>
+          <span class="chip success">Success</span>
+          <span class="chip warning">Pending</span>
+        </div>
       </div>
-      <div class="trust-tags">
-        <span>✓ Personalization Engine</span>
-        <span>✓ Automated Workflows</span>
-        <span>✓ Real-Time Analytics API</span>
-        <span>✓ Performance Telemetry</span>
-      </div>
-    </div>
-  </section>
 
-  <!-- 1. TECHNICAL & CONTENT DASHBOARD PERSONALIZATION -->
-  <section id="dashboards" class="section">
-    <h2 class="section-title">💻 Technical & Content Dashboard Personalization</h2>
-    <p class="section-subtitle">Tailor data views, technical SEO alerts, and content funnels for your team in real time.</p>
-    
-    <div class="swipe-container">
-      <div class="cards-grid swipe-track">
-        <div class="card">
-          <div class="card-icon">⚙️</div>
-          <h3>Custom Technical Widgets</h3>
-          <p>Drag-and-drop live technical health monitors, server response times, and schema error trackers.</p>
-          <button class="card-btn" onclick="dealAlert('Custom Technical Widgets')">Configure Widgets</button>
-        </div>
-        <div class="card">
-          <div class="card-icon">📝</div>
-          <h3>Content Lifecycle Pipeline</h3>
-          <p>Track content creation from drafting to multi-channel syndication with custom view presets.</p>
-          <button class="card-btn" onclick="dealAlert('Content Lifecycle Pipeline')">Personalize Views</button>
-        </div>
-        <div class="card">
-          <div class="card-icon">👤</div>
-          <h3>Role-Based Permissions</h3>
-          <p>Provide tailored dashboards for SEO specialists, copywriters, and agency leadership.</p>
-          <button class="card-btn" onclick="dealAlert('Role-Based Permissions')">Set Up Roles</button>
+      <!-- Card 3: Selection Items -->
+      <div class="component-card">
+        <span class="category">Molecules</span>
+        <h3>Selection Items</h3>
+        <div class="preview-box selection-preview">
+          <label><input type="checkbox" checked /> Checkbox</label>
+          <label><input type="radio" checked /> Radio Button</label>
+          <label class="toggle-switch">
+            <input type="checkbox" checked />
+            <span class="slider"></span>
+          </label>
         </div>
       </div>
-      <div class="swipe-indicators">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
-    </div>
-  </section>
 
-  <!-- 2. MARKETING AUTOMATION -->
-  <section id="automation" class="section alt-bg">
-    <h2 class="section-title">⚡ Marketing Automation Engine</h2>
-    <p class="section-subtitle">Automate omnichannel follow-ups, trigger-based messaging, and client lead workflows.</p>
-    
-    <div class="swipe-container">
-      <div class="cards-grid swipe-track">
-        <div class="card">
-          <div class="card-icon">🤖</div>
-          <h3>Trigger-Based AI Sequences</h3>
-          <p>Launch targeted SMS, Email, and WhatsApp messages based on live user interaction triggers.</p>
-          <button class="card-btn" onclick="dealAlert('Trigger-Based AI Sequences')">Build Sequence</button>
-        </div>
-        <div class="card">
-          <div class="card-icon">💬</div>
-          <h3>WhatsApp & Social Chatbots</h3>
-          <p>Qualify inbound leads 24/7, answer queries, and instantly book high-value client appointments.</p>
-          <button class="card-btn" onclick="dealAlert('WhatsApp Chatbots')">Deploy Chatbot</button>
-        </div>
-        <div class="card">
-          <div class="card-icon">🔄</div>
-          <h3>Dynamic Retargeting Funnel</h3>
-          <p>Re-engage website drop-offs automatically across Google Search, Instagram, and LinkedIn.</p>
-          <button class="card-btn" onclick="dealAlert('Dynamic Retargeting Funnel')">Start Retargeting</button>
+      <!-- Card 4: Date Picker -->
+      <div class="component-card">
+        <span class="category">Molecules</span>
+        <h3>Date Picker</h3>
+        <div class="preview-box date-preview">
+          <input type="date" value="2026-09-23" />
         </div>
       </div>
-      <div class="swipe-indicators">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
-    </div>
-  </section>
 
-  <!-- 3. AGENCY ANALYTICS -->
-  <section id="agency-analytics" class="section">
-    <h2 class="section-title">📊 Agency Analytics & Live Telemetry</h2>
-    <p class="section-subtitle">Centralize campaign metrics, conversion ratios, and attribution reports under one hood.</p>
-    
-    <div class="metrics-row">
-      <div class="metric-box">
-        <h4>Average Conversion Rate</h4>
-        <div class="value">+42.8%</div>
-        <p>Engineered growth uplift</p>
+      <!-- Card 5: Tooltips -->
+      <div class="component-card">
+        <span class="category">Molecules</span>
+        <h3>Tooltips</h3>
+        <div class="preview-box tooltip-preview">
+          <button class="tooltip-btn" data-tooltip="This is a primary tooltip!">Hover Me</button>
+        </div>
       </div>
-      <div class="metric-box">
-        <h4>Cost Per Lead (CPL)</h4>
-        <div class="value">₹95</div>
-        <p>Optimized with AI Bidding</p>
+
+      <!-- Card 6: Input Field -->
+      <div class="component-card">
+        <span class="category">Molecules</span>
+        <h3>Input Field</h3>
+        <div class="preview-box input-preview">
+          <input type="text" placeholder="Enter your text here..." />
+        </div>
       </div>
-      <div class="metric-box">
-        <h4>Total Client Revenue Generated</h4>
-        <div class="value">₹3.8 Cr+</div>
-        <p>Scaled across agency clients</p>
-      </div>
+
     </div>
 
-    <div class="chart-box">
-      <h3>Monthly Growth Telemetry Chart</h3>
-      <div class="bar-chart">
-        <div class="bar" style="height: 35%;" data-label="Month 1"></div>
-        <div class="bar" style="height: 52%;" data-label="Month 2"></div>
-        <div class="bar" style="height: 70%;" data-label="Month 3"></div>
-        <div class="bar" style="height: 85%;" data-label="Month 4"></div>
-        <div class="bar" style="height: 100%;" data-label="Month 5"></div>
-      </div>
+    <div class="footer-badge">
+      <span>🧩 Well Organized Component Library</span>
     </div>
-  </section>
+  </div>
 
-  <!-- 4. PERFORMANCE TRACKING -->
-  <section id="performance" class="section alt-bg">
-    <h2 class="section-title">🚀 Performance & Campaign Auditing</h2>
-    <p class="section-subtitle">Real-time speed monitoring, conversion auditing, and budget optimization tools.</p>
-    
-    <div class="swipe-container">
-      <div class="cards-grid swipe-track">
-        <div class="card">
-          <div class="card-icon">⚡</div>
-          <h3>Core Web Vitals Tracker</h3>
-          <p>Monitor page load speed, layout shifts, and technical performance for max conversion rates.</p>
-          <button class="card-btn" onclick="dealAlert('Core Web Vitals Tracker')">Audit Speed</button>
-        </div>
-        <div class="card">
-          <div class="card-icon">🧠</div>
-          <h3>AI Ad Budget Allocator</h3>
-          <p>Shift daily ad budget automatically into top-performing keywords to stop spend leaks.</p>
-          <button class="card-btn" onclick="dealAlert('AI Ad Budget Allocator')">Activate AI Allocator</button>
-        </div>
-        <div class="card">
-          <div class="card-icon">📈</div>
-          <h3>Multi-Touch Attribution</h3>
-          <p>Understand exactly which channels and ads are closing deals across complex buyer journeys.</p>
-          <button class="card-btn" onclick="dealAlert('Multi-Touch Attribution')">View Attribution</button>
-        </div>
-      </div>
-      <div class="swipe-indicators">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. GROWTH SUITE -->
-  <section id="growth-suite" class="section">
-    <h2 class="section-title">🌟 Enterprise Growth Suite</h2>
-    <p class="section-subtitle">Complete marketing stack tailored for ambitious agency scaling.</p>
-    
-    <div class="swipe-container">
-      <div class="cards-grid swipe-track">
-        <div class="card">
-          <div class="card-icon">📍</div>
-          <h3>Google Maps 3-Pack Domination</h3>
-          <p>Rank #1 on Google Maps for local searches and generate direct inbound call flow.</p>
-          <button class="card-btn" onclick="dealAlert('Google Maps Domination')">Dominate Maps</button>
-        </div>
-        <div class="card">
-          <div class="card-icon">🌐</div>
-          <h3>Omnichannel Ad Suite</h3>
-          <p>Unify Google, Meta, YouTube, and LinkedIn campaigns with automated creative testing.</p>
-          <button class="card-btn" onclick="dealAlert('Omnichannel Ad Suite')">Launch Suite</button>
-        </div>
-        <div class="card">
-          <div class="card-icon">🏆</div>
-          <h3>Dedicated Growth Team</h3>
-          <p>Direct weekly strategy management with senior marketing directors and technical experts.</p>
-          <button class="card-btn" onclick="dealAlert('Dedicated Growth Team')">Connect Team</button>
-        </div>
-      </div>
-      <div class="swipe-indicators">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
-    </div>
-  </section>
-
-  <!-- CALL TO ACTION BANNER -->
-  <section class="cta-banner">
-    <h2>Ready to Scale Your Growth with Growth Digital?</h2>
-    <p>Contact Vedant & Divy directly to unlock exclusive packages and custom marketing plans.</p>
-    <a href="tel:+919316528918" class="btn-primary btn-large">📞 Call Now: +91 9316528918</a>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <p>© 2026 Growth Digital. Crafted by <strong>Vedant & Divy</strong>. All Deals Handled via <strong>+91 9316528918</strong></p>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
