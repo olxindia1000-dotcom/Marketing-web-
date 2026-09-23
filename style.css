@@ -24,7 +24,7 @@ body {
   pointer-events: none;
 }
 
-/* APP CONTAINER */
+/* APP LAYOUT */
 .app-container {
   display: flex;
   position: relative;
@@ -32,10 +32,10 @@ body {
   min-height: 100vh;
 }
 
-/* SIDEBAR */
+/* SIDEBAR STYLES */
 .sidebar {
   width: 260px;
-  background: rgba(17, 24, 39, 0.85);
+  background: rgba(17, 24, 39, 0.9);
   backdrop-filter: blur(16px);
   border-right: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
@@ -71,9 +71,7 @@ body {
 .brand-text h2 {
   font-size: 18px;
   font-weight: 800;
-  background: linear-gradient(to right, #ffffff, #94a3b8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
 }
 
 .brand-text span {
@@ -139,7 +137,6 @@ body {
   max-width: calc(100% - 260px);
 }
 
-/* HEADER */
 .top-header {
   display: flex;
   justify-content: space-between;
@@ -203,15 +200,11 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-
 .btn-edit {
   background: linear-gradient(135deg, #f59e0b, #d97706);
   color: #000;
   border: none;
-  padding: 4px 10px;
+  padding: 6px 12px;
   border-radius: 6px;
   font-weight: 700;
   font-size: 11px;
@@ -242,7 +235,7 @@ body {
 }
 
 .kpi-card {
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 20px;
@@ -266,17 +259,12 @@ body {
   margin: 12px 0 6px 0;
 }
 
-.kpi-trend {
-  font-size: 12px;
-  font-weight: 700;
-}
-
 .kpi-trend.positive { color: #10b981; }
 .kpi-trend.negative { color: #ef4444; }
 
 /* CONTENT CARDS & TABLES */
 .content-card {
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 24px;
@@ -309,7 +297,7 @@ body {
   text-transform: uppercase;
 }
 
-/* CHART */
+/* CHART CONTAINER */
 .chart-container {
   display: flex;
   align-items: flex-end;
@@ -323,13 +311,12 @@ body {
   background: linear-gradient(to top, #00f2fe, #4facfe);
   border-radius: 6px 6px 0 0;
   transition: height 0.5s ease;
-  position: relative;
 }
 
-/* AUTOMATION TERMINAL */
+/* TERMINAL LOGS */
 .terminal-card {
   background: #050811;
-  border-color: rgba(0, 242, 254, 0.2);
+  border: 1px solid rgba(0, 242, 254, 0.2);
 }
 
 .terminal-body {
@@ -351,7 +338,21 @@ body {
   font-size: 12px;
 }
 
-/* MODAL */
+/* ROI CALCULATOR GRID */
+.roi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.roi-stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* MODAL STYLES */
 .modal {
   display: none;
   position: fixed;
@@ -399,7 +400,7 @@ body {
   margin-bottom: 6px;
 }
 
-.form-group input, .form-group select {
+.form-group input {
   width: 100%;
   padding: 10px;
   background: rgba(255, 255, 255, 0.05);
