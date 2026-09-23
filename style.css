@@ -1,163 +1,159 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
-  background-color: #e6f4ea;
-  color: #1e293b;
-  padding: 40px 20px;
+  background-color: #d1ebd8;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px);
+  background-size: 24px 24px;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 60px 20px 100px 20px;
 }
 
-.library-container {
+.library-wrapper {
+  position: relative;
   max-width: 1100px;
   width: 100%;
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 40px;
+/* Inspector Popup Glassmorphism */
+.figma-inspector-popup {
+  position: absolute;
+  top: -30px;
+  left: 60px;
+  width: 220px;
+  background: rgba(30, 30, 30, 0.9);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 14px;
+  color: #ffffff;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.15);
+  z-index: 10;
 }
 
-.badge {
-  display: inline-block;
-  background: #dcfce7;
-  color: #15803d;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-weight: 700;
-  font-size: 0.85rem;
+.popup-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: #a1a1aa;
   margin-bottom: 12px;
 }
 
-.header h1 {
-  font-size: 2.5rem;
-  color: #0f172a;
-  margin-bottom: 8px;
+.dot {
+  width: 6px;
+  height: 6px;
+  background: #38bdf8;
+  border-radius: 50%;
 }
 
-.header p {
-  color: #64748b;
-  font-size: 1rem;
+.popup-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 0.75rem;
 }
 
-/* Grid Layout */
-.components-grid {
+.figma-select {
+  background: #27272a;
+  border: 1px solid #3f3f46;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+}
+
+.figma-toggle {
+  width: 32px;
+  height: 18px;
+  background: #3f3f46;
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.figma-toggle.active {
+  background: #3b82f6;
+}
+
+.toggle-circle {
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s;
+}
+
+.figma-toggle.active .toggle-circle {
+  left: 16px;
+}
+
+.popup-footer { text-align: right; }
+.chip-tag { font-size: 0.65rem; background: #27272a; padding: 2px 6px; border-radius: 4px; color: #a1a1aa; }
+
+/* Grid Cards */
+.masonry-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 24px;
 }
 
-.component-card {
+.ui-card {
   background: #ffffff;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-  border: 1px solid #e2e8f0;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.component-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
-
-.category {
-  font-size: 0.75rem;
-  color: #94a3b8;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-.component-card h3 {
-  font-size: 1.25rem;
-  color: #0f172a;
-  margin: 4px 0 16px 0;
-}
-
-/* Previews */
-.preview-box {
-  background: #fafaf9;
-  border-radius: 12px;
-  padding: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  min-height: 90px;
-}
-
-/* Avatars */
-.avatars-preview .avatar {
-  width: 40px;
-  height: 40px;
-  background: #e2e8f0;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-}
-
-.avatars-preview .avatar.active {
-  background: #0284c7;
-  color: white;
-}
-
-/* Chips */
-.chip {
-  padding: 6px 14px;
   border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-.chip.primary { background: #0284c7; color: white; }
-.chip.success { background: #22c55e; color: white; }
-.chip.warning { background: #eab308; color: white; }
-
-/* Inputs & Controls */
-.selection-preview {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  font-size: 0.9rem;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  border: 1px solid rgba(255,255,255,0.8);
 }
 
-.date-preview input, .input-preview input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  outline: none;
-}
+.card-category { font-size: 0.75rem; font-weight: 700; color: #94a3b8; }
+.card-title { font-size: 1.4rem; font-weight: 800; color: #0f172a; margin: 4px 0 16px 0; }
 
-/* Tooltip Button */
-.tooltip-btn {
-  background: #0f172a;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
+/* Components Styling */
+.avatar-row { display: flex; gap: 10px; margin-bottom: 10px; }
+.avatar { width: 36px; height: 36px; background: #f1f5f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.avatar.active-ring { border: 2px solid #10b981; }
 
-/* Footer Badge */
-.footer-badge {
-  text-align: center;
-  margin-top: 40px;
-}
+.chip-row { display: flex; gap: 8px; margin-bottom: 8px; }
+.chip-item { padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+.chip-item.dark { background: #0f172a; color: white; }
+.chip-item.purple { background: #8b5cf6; color: white; }
+.chip-item.blue { background: #3b82f6; color: white; }
+.chip-item.green { background: #10b981; color: white; }
 
-.footer-badge span {
+.input-box { display: flex; align-items: center; border: 1px solid #cbd5e1; padding: 8px; border-radius: 8px; }
+.input-box input { border: none; outline: none; width: 100%; margin: 0 8px; }
+
+.tooltip-box { padding: 8px; border-radius: 6px; color: white; text-align: center; font-size: 0.75rem; margin-bottom: 8px; }
+.tooltip-box.dark { background: #0f172a; }
+.tooltip-box.green { background: #10b981; }
+
+/* Bottom Badge */
+.bottom-banner-badge {
+  margin: 40px auto 0 auto;
   background: #ffffff;
   padding: 12px 28px;
-  border-radius: 30px;
-  font-weight: 700;
-  color: #0f172a;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-  display: inline-block;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  width: fit-content;
 }
+
+.puzzle-icon { background: #22c55e; color: white; padding: 6px 10px; border-radius: 8px; }
