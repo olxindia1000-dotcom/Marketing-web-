@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="gu">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -119,7 +119,7 @@
     .brand-info span {
       font-size: 10px;
       font-weight: 700;
-      color: #fde047; /* Yellow highlight text */
+      color: #fde047;
       letter-spacing: 1px;
     }
 
@@ -237,7 +237,7 @@
     }
 
     .btn-secondary:hover {
-      background: #fef8c3; /* Light Yellow Tint on Hover */
+      background: #fef8c3;
       border-color: #fde047;
       transform: translateY(-2px);
     }
@@ -273,7 +273,7 @@
 
     .card {
       background: var(--bg-card);
-      border: 1px solid rgba(254, 224, 71, 0.5); /* Yellow Accent Border */
+      border: 1px solid rgba(254, 224, 71, 0.5);
       border-radius: var(--radius);
       padding: 24px;
       box-shadow: var(--shadow-sm);
@@ -317,7 +317,7 @@
       border-radius: 8px;
       font-size: 14px;
       outline: none;
-      background: #fefce8; /* Soft Yellow Tint Input */
+      background: #fefce8;
       transition: all 0.25s ease;
     }
 
@@ -341,7 +341,7 @@
     }
 
     .data-table th {
-      background: #fef9c3; /* Soft Light Yellow Table Header */
+      background: #fef9c3;
       color: #854d0e;
       font-size: 12px;
       text-transform: uppercase;
@@ -432,7 +432,7 @@
 
   <div class="app-layout">
     
-    <!-- Sidebar Menu (Custom Theme) -->
+    <!-- Sidebar Menu -->
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-logo"><i class="fa-solid fa-chart-line"></i></div>
@@ -480,7 +480,7 @@
         </div>
       </header>
 
-      <!-- TAB 1: EXECUTIVE DASHBOARD (NO KPIS) -->
+      <!-- TAB 1: EXECUTIVE DASHBOARD -->
       <section id="analytics" class="tab-section active">
         <div class="grid-2">
           <div class="card">
@@ -745,7 +745,7 @@
           tension: 0.4
         }]
       },
-      options: { responsive: true, plugins: { legend: { display: false } } }
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
     });
 
     const ctx2 = document.getElementById('sourceChart').getContext('2d');
@@ -758,7 +758,7 @@
           backgroundColor: ['#0284c7', '#38bdf8', '#eab308', '#f59e0b']
         }]
       },
-      options: { responsive: true }
+      options: { responsive: true, maintainAspectRatio: false }
     });
 
     // TABLE MODAL EDIT & ADD LOGIC
@@ -766,7 +766,7 @@
     let activeModalType = '';
 
     function deleteRow(btn) {
-      if (confirm('Delete this record?')) btn.closest('tr').remove();
+      if (confirm('શું તમે આ રેકોર્ડ કાઢી નાખવા માંગો છો?')) btn.closest('tr').remove();
     }
 
     function editRow(btn) {
@@ -835,7 +835,11 @@
         const inputs = document.querySelectorAll('.edit-field');
         inputs.forEach((input, index) => {
           if (index < currentEditRow.cells.length - 1) {
-            currentEditRow.cells[index].innerText = input.value;
+            if (index === 3 && currentEditRow.cells[index].querySelector('.badge')) {
+              currentEditRow.cells[index].querySelector('.badge').innerText = input.value;
+            } else {
+              currentEditRow.cells[index].innerText = input.value;
+            }
           }
         });
       } else {
@@ -863,10 +867,10 @@
     }
 
     function exportData() {
-      alert("Exporting CSV report...");
+      alert("CSV રિપોર્ટ એક્સપોર્ટ થઈ રહ્યો છે...");
     }
 
-    // HIGH-LEVEL PARTICLES ANIMATION (YELLOW/BLUE GLOW)
+    // HIGH-LEVEL PARTICLES ANIMATION
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
